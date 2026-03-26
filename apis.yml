@@ -1,11 +1,15 @@
 aid: dagger
 name: Dagger
 description: >-
-  Dagger is a programmable CI/CD engine that runs pipelines in containers, enabling portable and cacheable builds.
+  Dagger is a programmable CI/CD engine that runs pipelines in containers, allowing developers to write their CI/CD pipelines in code using their preferred programming language and run them anywhere.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Containers
+  - CI/CD
+  - DevOps
+  - Pipelines
+  - Build Automation
 url: >-
   https://raw.githubusercontent.com/api-evangelist/dagger/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -15,14 +19,34 @@ apis:
   - aid: dagger:dagger
     name: Dagger
     description: >-
-      Dagger is a programmable CI/CD engine that runs pipelines in containers, enabling portable and cacheable builds.
-    humanURL: https://github.com/api-evangelist/dagger
+      Dagger is a programmable CI/CD engine that runs pipelines in containers, allowing developers to write their CI/CD pipelines in code using their preferred programming language and run them anywhere.
+    humanURL: https://dagger.io/
     tags:
       - Containers
-    properties: []
+      - CI/CD
+      - DevOps
+      - Pipelines
+      - Build Automation
+    properties:
+      - type: Documentation
+        url: https://docs.dagger.io/
+      - type: Getting Started
+        url: https://docs.dagger.io/quickstart
 common:
   - type: Website
-    url: https://github.com/api-evangelist/dagger
+    url: https://dagger.io/
+  - type: Documentation
+    url: https://docs.dagger.io/
+  - type: Getting Started
+    url: https://docs.dagger.io/quickstart
+  - type: GitHub Organization
+    url: https://github.com/dagger
+  - type: Blog
+    url: https://dagger.io/blog
+  - type: Pricing
+    url: https://dagger.io/pricing
+  - type: Sign Up
+    url: https://dagger.io/cloud
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
