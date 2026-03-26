@@ -1,0 +1,28 @@
+aid: dagger
+name: Dagger
+description: >-
+  Dagger is a programmable CI/CD engine that runs pipelines in containers, enabling portable and cacheable builds.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Containers
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/dagger/refs/heads/main/apis.yml
+created: '2026-03-26'
+modified: '2026-03-26'
+specificationVersion: '0.19'
+apis:
+  - aid: dagger:dagger
+    name: Dagger
+    description: >-
+      Dagger is a programmable CI/CD engine that runs pipelines in containers, enabling portable and cacheable builds.
+    humanURL: https://github.com/api-evangelist/dagger
+    tags:
+      - Containers
+    properties: []
+common:
+  - type: Website
+    url: https://github.com/api-evangelist/dagger
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
