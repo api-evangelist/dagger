@@ -5,11 +5,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Containers
+  - Build Automation
   - CI/CD
+  - Containers
   - DevOps
   - Pipelines
-  - Build Automation
 url: >-
   https://raw.githubusercontent.com/api-evangelist/dagger/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -22,11 +22,11 @@ apis:
       Dagger is a programmable CI/CD engine that runs pipelines in containers, allowing developers to write their CI/CD pipelines in code using their preferred programming language and run them anywhere.
     humanURL: https://dagger.io/
     tags:
-      - Containers
+      - Build Automation
       - CI/CD
+      - Containers
       - DevOps
       - Pipelines
-      - Build Automation
     properties:
       - type: Documentation
         url: https://docs.dagger.io/
