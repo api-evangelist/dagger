@@ -1,0 +1,28 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://raw.githubusercontent.com/api-evangelist/dagger/refs/heads/main/vocabulary/dagger-vocabulary.yml#",
+    "schema": "https://schema.org/",
+    "dagger": "https://raw.githubusercontent.com/api-evangelist/dagger/refs/heads/main/vocabulary/dagger-vocabulary.yml#",
+    "DaggerEngine": "dagger:DaggerEngine",
+    "GraphQLAPI": "dagger:GraphQLAPI",
+    "Module": "dagger:Module",
+    "Function": "dagger:Function",
+    "Container": "dagger:Container",
+    "Directory": "dagger:Directory",
+    "File": "dagger:File",
+    "Secret": "dagger:Secret",
+    "CacheVolume": "dagger:CacheVolume",
+    "Daggerverse": "dagger:Daggerverse",
+    "DaggerCloud": "dagger:DaggerCloud",
+    "id": "@id",
+    "type": "@type",
+    "name": "schema:name",
+    "ref": "dagger:ref",
+    "sdk": "dagger:sdk",
+    "dependencies": "dagger:dependencies",
+    "arguments": "dagger:arguments",
+    "returnType": "dagger:returnType",
+    "imageRef": "dagger:imageRef"
+  }
+}

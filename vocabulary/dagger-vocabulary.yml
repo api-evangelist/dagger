@@ -1,0 +1,44 @@
+name: Dagger Vocabulary
+description: >-
+  Controlled vocabulary describing the core concepts of the Dagger
+  programmable CI/CD engine: Engine, GraphQL API, Modules, Functions,
+  Containers, Directories, Files, Secrets, Caches, Daggerverse, and
+  Dagger Cloud.
+modified: '2026-04-28'
+terms:
+  - term: DaggerEngine
+    description: The Dagger runtime that executes pipelines as containerized GraphQL operations on a content-addressed store.
+  - term: GraphQLAPI
+    description: The unified, introspectable GraphQL type system exposed by the Dagger Engine and dynamically extended by Modules.
+  - term: Module
+    description: A versioned, language-agnostic package of Dagger Functions published to a Git repository or the Daggerverse.
+    properties:
+      - ref
+      - sdk
+      - dependencies
+  - term: Function
+    description: A typed unit of work in a Module callable via the GraphQL API or CLI.
+    properties:
+      - name
+      - arguments
+      - returnType
+  - term: Container
+    description: An OCI container as a first-class GraphQL type built and manipulated through composable steps.
+    properties:
+      - imageRef
+      - exec
+      - withFile
+      - withDirectory
+      - withEnvVariable
+  - term: Directory
+    description: An immutable directory tree as a first-class GraphQL type, content-addressed by the Dagger Engine.
+  - term: File
+    description: An immutable file as a first-class GraphQL type, content-addressed by the Dagger Engine.
+  - term: Secret
+    description: A first-class GraphQL type for confidential values that are never logged or persisted to traces.
+  - term: CacheVolume
+    description: A persistent cache volume mountable into containers across pipeline runs.
+  - term: Daggerverse
+    description: The free Dagger module index at daggerverse.dev for searching and consuming public Dagger Modules.
+  - term: DaggerCloud
+    description: The hosted control plane providing observability, traces, and checks for Dagger pipelines.
