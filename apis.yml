@@ -161,6 +161,23 @@ common:
     url: vocabulary/dagger-vocabulary.yml
   - type: Capabilities
     url: capabilities/dagger-graphql-capabilities.yml
+  - type: Integrations
+    url: https://dagger.io/partners/
+integrations:
+  - name: Dagger
+  - name: GitHub stars
+  - name: Puzzle
+  - name: AgencyServices AI
+  - name: CodeToCloud
+  - name: Cerbos
+  - name: Chainloop
+  - name: Civo
+  - name: Depot
+  - name: Infisical
+  - name: Jozu
+  - name: Tracetest
+  - name: Okteto
+  - name: LocalStack
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
