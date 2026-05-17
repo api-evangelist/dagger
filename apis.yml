@@ -1,6 +1,6 @@
 aid: dagger
 name: Dagger
-x-type: opensource
+kind: opensource
 description: >-
   Dagger is an open-source programmable CI/CD engine that runs pipelines
   in containers using a unified, introspectable GraphQL API. Pipelines
@@ -155,7 +155,7 @@ common:
     url: https://twitter.com/dagger_io
   - type: License
     url: https://github.com/dagger/dagger/blob/main/LICENSE
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/dagger-context.jsonld
   - type: Vocabulary
     url: vocabulary/dagger-vocabulary.yml
