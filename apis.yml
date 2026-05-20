@@ -127,6 +127,8 @@ apis:
       - type: SignUp
         url: https://dagger.cloud/signup
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/dagger-io
   - type: Website
     url: https://dagger.io/
   - type: Documentation
