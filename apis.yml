@@ -165,6 +165,8 @@ common:
     url: capabilities/dagger-graphql-capabilities.yml
   - type: Integrations
     url: https://dagger.io/partners/
+  - type: LLMsTxt
+    url: https://docs.dagger.io/llms.txt
 integrations:
   - name: Dagger
   - name: GitHub stars
