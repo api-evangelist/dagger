@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: Dagger HTTP GraphQL API
+  version: v0.x
+  description: |
+    Dagger exposes its build/run/test engine as a GraphQL API served by
+    a per-session local endpoint. The HTTP transport is intended to be
+    called from language SDKs or directly via `dagger query`, but any
+    GraphQL/HTTP client may use it.
+
+    For every Dagger session, the engine creates a unique local endpoint
+    on 127.0.0.1 at the port supplied in the `DAGGER_SESSION_PORT`
+    environment variable, served at the path `/query`. Requests must
+    authenticate via HTTP Basic using the session token from
+    `DAGGER_SESSION_TOKEN` as the username (with an empty password),
+    e.g. `Authorization: Basic <base64(DAGGER_SESSION_TOKEN:)>`.
+
+    The GraphQL schema is dynamic: the core schema exposes Container,
+    Directory, File, Secret, CacheVolume, Git, Host, Http, and many
+    `loadXFromID` lookups, and additional fields are added when Dagger
+    modules are loaded.
+  contact:
+    name: Dagger
+    url: https://docs.dagger.io
+  license:
+    name: Apache-2.0
+externalDocs:
+  description: Dagger HTTP / GraphQL API documentation
+  url: https://docs.dagger.io/api/
+servers:
+  - url: http://127.0.0.1:{DAGGER_SESSION_PORT}
+    description: Per-session local Dagger engine endpoint.
+    variables:
+      DAGGER_SESSION_PORT:
+        default: '8080'
+        description: |
+          Value of the DAGGER_SESSION_PORT environment variable that
+          the Dagger engine sets for each session.
+security:
+  - SessionTokenBasic: []
+tags:
+  - name: GraphQL
+paths:
+  /query:
+    post:
+      tags: [GraphQL]
+      summary: Execute a GraphQL query or mutation against the Dagger engine
+      description: |
+        Standard GraphQL-over-HTTP POST. Sends a JSON body with `query`,
+        optional `variables`, and optional `operationName`. The core
+        Dagger schema covers container, directory, file, secret, git,
+        http, host, cacheVolume, currentModule, currentEnv, defaultPlatform,
+        and many `loadXFromID` resolvers, plus any fields contributed by
+        loaded Dagger modules.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/GraphQLRequest' }
+            examples:
+              container-from:
+                summary: Pull an image and inspect a file
+                value:
+                  query: |
+                    query {
+                      container {
+                        from(address: "alpine:latest") {
+                          file(path: "/etc/os-release") { contents }
+                        }
+                      }
+                    }
+              git-clone:
+                summary: Clone a Git repo
+                value:
+                  query: |
+                    query($url: String!) {
+                      git(url: $url) {
+                        head { tree { entries } }
+                      }
+                    }
+                  variables:
+                    url: https://github.com/dagger/dagger
+      responses:
+        '200':
+          description: GraphQL response (always 200 — errors carried inside the body)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/GraphQLResponse' }
+        '401':
+          description: Missing or invalid session token
+    get:
+      tags: [GraphQL]
+      summary: Execute a GraphQL query via GET
+      description: GET variant of the GraphQL endpoint (query-string encoded).
+      parameters:
+        - in: query
+          name: query
+          required: true
+          schema: { type: string }
+        - in: query
+          name: variables
+          schema: { type: string, description: JSON-encoded variables. }
+        - in: query
+          name: operationName
+          schema: { type: string }
+      responses:
+        '200':
+          description: GraphQL response
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/GraphQLResponse' }
+components:
+  securitySchemes:
+    SessionTokenBasic:
+      type: http
+      scheme: basic
+      description: |
+        HTTP Basic auth where the username is the value of the
+        DAGGER_SESSION_TOKEN environment variable and the password is empty.
+  schemas:
+    GraphQLRequest:
+      type: object
+      required: [query]
+      properties:
+        query: { type: string, description: GraphQL query or mutation document. }
+        variables:
+          type: object
+          additionalProperties: true
+          description: Variables supplied to the operation.
+        operationName:
+          type: string
+          nullable: true
+          description: Name of the operation to execute when the document has multiple.
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          nullable: true
+        errors:
+          type: array
+          items: { $ref: '#/components/schemas/GraphQLError' }
+        extensions:
+          type: object
+          additionalProperties: true
+    GraphQLError:
+      type: object
+      properties:
+        message: { type: string }
+        path:
+          type: array
+          items: { type: string }
+        locations:
+          type: array
+          items:
+            type: object
+            properties:
+              line: { type: integer }
+              column: { type: integer }
+        extensions:
+          type: object
+          additionalProperties: true
