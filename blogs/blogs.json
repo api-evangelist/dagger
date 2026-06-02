@@ -2,20 +2,17 @@
   "repo": "dagger",
   "feeds": [
     {
-      "source": "https://dagger.io/blog",
-      "feed_url": "",
+      "source": "https://docs.dagger.io/api/internals/",
+      "feed_url": "https://docs.dagger.io/api/internals/",
       "title": "",
       "saved": 0,
-      "error": "no_feed"
+      "method": "none"
     },
     {
-      "source": "https://dagger.io/blog/graphql",
-      "feed_url": "",
-      "title": "",
-      "saved": 0,
-      "error": "no_feed"
+      "source": "https://daggerverse.dev/",
+      "error": "URLError"
     }
   ],
-  "fetched": "2026-05-17T20:48:52Z",
+  "fetched": "2026-06-01T23:35:02Z",
   "post_count": 0
 }
