@@ -1,0 +1,343 @@
+{
+  "item": [
+    {
+      "id": "3c8bedd8-fbfd-44ab-8f94-abb7cebe1052",
+      "name": "GraphQL",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aefda050-4da1-48d0-8e27-aaa2c0c7ce27",
+          "name": "Execute a GraphQL query or mutation against the Dagger engine",
+          "request": {
+            "name": "Execute a GraphQL query or mutation against the Dagger engine",
+            "description": {
+              "content": "Standard GraphQL-over-HTTP POST. Sends a JSON body with `query`,\noptional `variables`, and optional `operationName`. The core\nDagger schema covers container, directory, file, secret, git,\nhttp, host, cacheVolume, currentModule, currentEnv, defaultPlatform,\nand many `loadXFromID` resolvers, plus any fields contributed by\nloaded Dagger modules.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Value of the DAGGER_SESSION_PORT environment variable that\nthe Dagger engine sets for each session.\n",
+                  "type": "any",
+                  "value": "{{DAGGER_SESSION_PORT}}",
+                  "key": "DAGGER_SESSION_PORT"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"key_0\": 5693\n  },\n  \"operationName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c474ccf-9193-496a-be77-ca77b9c18ff1",
+              "name": "GraphQL response (always 200 — errors carried inside the body)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Value of the DAGGER_SESSION_PORT environment variable that\nthe Dagger engine sets for each session.\n",
+                      "type": "any",
+                      "value": "{{DAGGER_SESSION_PORT}}",
+                      "key": "DAGGER_SESSION_PORT"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"query {\\n  container {\\n    from(address: \\\"alpine:latest\\\") {\\n      file(path: \\\"/etc/os-release\\\") { contents }\\n    }\\n  }\\n}\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": true\n  },\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locations\": [\n        {\n          \"line\": 4295,\n          \"column\": 2402\n        },\n        {\n          \"line\": 4558,\n          \"column\": 1284\n        }\n      ],\n      \"extensions\": {\n        \"key_0\": \"string\",\n        \"key_1\": 5584.579013971953,\n        \"key_2\": false\n      }\n    },\n    {\n      \"message\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locations\": [\n        {\n          \"line\": 2393,\n          \"column\": 3506\n        },\n        {\n          \"line\": 1023,\n          \"column\": 7724\n        }\n      ],\n      \"extensions\": {\n        \"key_0\": 6137\n      }\n    }\n  ],\n  \"extensions\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41d7361c-d43b-4470-9ab3-6ba6015b9f41",
+              "name": "Missing or invalid session token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Value of the DAGGER_SESSION_PORT environment variable that\nthe Dagger engine sets for each session.\n",
+                      "type": "any",
+                      "value": "{{DAGGER_SESSION_PORT}}",
+                      "key": "DAGGER_SESSION_PORT"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"query {\\n  container {\\n    from(address: \\\"alpine:latest\\\") {\\n      file(path: \\\"/etc/os-release\\\") { contents }\\n    }\\n  }\\n}\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3201619a-e215-4f70-bac0-afbc7129396d",
+          "name": "Execute a GraphQL query via GET",
+          "request": {
+            "name": "Execute a GraphQL query via GET",
+            "description": {
+              "content": "GET variant of the GraphQL endpoint (query-string encoded).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "variables",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "operationName",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Value of the DAGGER_SESSION_PORT environment variable that\nthe Dagger engine sets for each session.\n",
+                  "type": "any",
+                  "value": "{{DAGGER_SESSION_PORT}}",
+                  "key": "DAGGER_SESSION_PORT"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "915aef92-eb10-42e3-bb78-f6c609502035",
+              "name": "GraphQL response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "variables",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "operationName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Value of the DAGGER_SESSION_PORT environment variable that\nthe Dagger engine sets for each session.\n",
+                      "type": "any",
+                      "value": "{{DAGGER_SESSION_PORT}}",
+                      "key": "DAGGER_SESSION_PORT"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"key_0\": false,\n    \"key_1\": true\n  },\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locations\": [\n        {\n          \"line\": 4295,\n          \"column\": 2402\n        },\n        {\n          \"line\": 4558,\n          \"column\": 1284\n        }\n      ],\n      \"extensions\": {\n        \"key_0\": \"string\",\n        \"key_1\": 5584.579013971953,\n        \"key_2\": false\n      }\n    },\n    {\n      \"message\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locations\": [\n        {\n          \"line\": 2393,\n          \"column\": 3506\n        },\n        {\n          \"line\": 1023,\n          \"column\": 7724\n        }\n      ],\n      \"extensions\": {\n        \"key_0\": 6137\n      }\n    }\n  ],\n  \"extensions\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Value of the DAGGER_SESSION_PORT environment variable that\nthe Dagger engine sets for each session.\n",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8080",
+      "key": "DAGGER_SESSION_PORT"
+    },
+    {
+      "type": "string",
+      "value": "http://127.0.0.1:{{DAGGER_SESSION_PORT}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "04e9bd54-71bb-437a-9da2-2b85d1a17922",
+    "name": "Dagger HTTP GraphQL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Dagger exposes its build/run/test engine as a GraphQL API served by\na per-session local endpoint. The HTTP transport is intended to be\ncalled from language SDKs or directly via `dagger query`, but any\nGraphQL/HTTP client may use it.\n\nFor every Dagger session, the engine creates a unique local endpoint\non 127.0.0.1 at the port supplied in the `DAGGER_SESSION_PORT`\nenvironment variable, served at the path `/query`. Requests must\nauthenticate via HTTP Basic using the session token from\n`DAGGER_SESSION_TOKEN` as the username (with an empty password),\ne.g. `Authorization: Basic <base64(DAGGER_SESSION_TOKEN:)>`.\n\nThe GraphQL schema is dynamic: the core schema exposes Container,\nDirectory, File, Secret, CacheVolume, Git, Host, Http, and many\n`loadXFromID` lookups, and additional fields are added when Dagger\nmodules are loaded.\n\n\nContact Support:\n Name: Dagger",
+      "type": "text/plain"
+    }
+  }
+}
