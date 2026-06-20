@@ -15,7 +15,7 @@ description: >-
   expose a public REST API; clients connect to a per-session Dagger
   Engine GraphQL endpoint and the optional Dagger Cloud Web UI.
 url: https://raw.githubusercontent.com/api-evangelist/dagger/refs/heads/main/apis.yml
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 type: Index
 access: Open Source
 position: Consumer
@@ -48,7 +48,7 @@ apis:
     All Dagger SDKs (Go, Python, TypeScript, PHP, Java, .NET, Elixir,
     Rust) are generated against this schema. There is no
     publicly-hosted REST endpoint.
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.dagger.io/api/
   tags:
   - GraphQL
@@ -75,7 +75,7 @@ apis:
     and Rust that generate strongly typed clients against the Dagger
     Engine's GraphQL schema, allowing pipelines to be written as
     regular code in the developer's preferred language.
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.dagger.io/sdk/
   tags:
   - .NET
@@ -98,7 +98,7 @@ apis:
     Daggerverse is the free, public index of Dagger Modules.
     Developers search for, browse, and consume reusable Modules
     contributed by the Dagger community.
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://daggerverse.dev/
   tags:
   - Daggerverse
@@ -116,7 +116,7 @@ apis:
     traces, checks, module observability, and team collaboration.
     It integrates with the local Dagger Engine for seamless trace
     uploads.
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://dagger.io/cloud
   tags:
   - Cloud
