@@ -107,7 +107,7 @@ apis:
   properties:
   - type: Website
     url: https://daggerverse.dev/
-  - type: Quickstart
+  - type: GettingStarted
     url: https://docs.dagger.io/ci/quickstart/simplify/
 - aid: dagger:cloud
   name: Dagger Cloud
@@ -126,7 +126,7 @@ apis:
   properties:
   - type: Website
     url: https://dagger.io/cloud
-  - type: SignUp
+  - type: Signup
     url: https://dagger.cloud/signup
 common:
 - type: LinkedIn
@@ -149,7 +149,7 @@ common:
   url: https://dagger.io/blog
 - type: Pricing
   url: https://dagger.io/pricing
-- type: SignUp
+- type: Signup
   url: https://dagger.cloud/signup
 - type: Discord
   url: https://discord.gg/dagger-io
@@ -167,7 +167,7 @@ common:
   url: capabilities/dagger-graphql-capabilities.yml
 - type: Integrations
   url: https://dagger.io/partners/
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.dagger.io/llms.txt
 integrations:
 - name: Dagger

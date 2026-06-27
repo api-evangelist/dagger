@@ -3,23 +3,27 @@
   "feeds": [
     {
       "source": "https://dagger.io/blog",
-      "feed_url": "https://dagger.io/blog",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
+    },
+    {
+      "source": "https://dagger.io/blog/graphql",
+      "saved": 0,
+      "error": "filtered/tag view of same blog; no in-window posts on main listing"
     },
     {
       "source": "https://docs.dagger.io/api/internals/",
-      "feed_url": "https://docs.dagger.io/api/internals/",
-      "title": "",
       "saved": 0,
-      "method": "none"
+      "error": "docs page, not a blog feed"
     },
     {
       "source": "https://daggerverse.dev/",
-      "error": "URLError"
+      "saved": 0,
+      "error": "module registry, not a blog feed"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
-  "post_count": 0
+  "fetched": "2026-06-27T12:35:55Z",
+  "post_count": 0,
+  "agent_pulled": "2026-06-27"
 }
