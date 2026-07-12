@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/dagger-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: SessionTokenBasic
+  type: http
+  scheme: basic
+  description: |-
+    HTTP Basic auth where the username is the value of the
+    DAGGER_SESSION_TOKEN environment variable and the password is empty.
+  sources:
+  - openapi/dagger-openapi.yml

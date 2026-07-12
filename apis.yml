@@ -129,6 +129,10 @@ apis:
   - type: Signup
     url: https://dagger.cloud/signup
 common:
+- type: DomainSecurity
+  url: security/dagger-domain-security.yml
+- type: Authentication
+  url: authentication/dagger-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/dagger-io
 - type: Website
