@@ -129,6 +129,8 @@ apis:
   - type: Signup
     url: https://dagger.cloud/signup
 common:
+- type: AgenticAccess
+  url: agentic-access/dagger-agentic-access.yml
 - type: DomainSecurity
   url: security/dagger-domain-security.yml
 - type: Authentication
