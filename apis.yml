@@ -15,7 +15,20 @@ description: >-
   expose a public REST API; clients connect to a per-session Dagger
   Engine GraphQL endpoint and the optional Dagger Cloud Web UI.
 url: https://raw.githubusercontent.com/api-evangelist/dagger/refs/heads/main/apis.yml
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dagger.png
 type: Index
 access: Open Source
 position: Consumer
@@ -41,13 +54,11 @@ apis:
 - aid: dagger:graphql
   name: Dagger Engine GraphQL API
   description: >-
-    The Dagger Engine exposes a unified, introspectable GraphQL type
-    system at a per-session endpoint. The schema includes Container,
-    Directory, File, Secret, CacheVolume, and other first-class types
-    and is dynamically extended at runtime by loaded Dagger Modules.
-    All Dagger SDKs (Go, Python, TypeScript, PHP, Java, .NET, Elixir,
-    Rust) are generated against this schema. There is no
-    publicly-hosted REST endpoint.
+    The Dagger Engine exposes a unified, introspectable GraphQL type system at a per-session endpoint.
+    The schema includes Container, Directory, File, Secret, CacheVolume, and other first-class types and
+    is dynamically extended at runtime by loaded Dagger Modules. All Dagger SDKs (Go, Python, TypeScript,
+    PHP, Java, .NET, Elixir, Rust) are generated against this schema. There is no publicly-hosted REST
+    endpoint.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.dagger.io/api/
   tags:
@@ -71,10 +82,9 @@ apis:
 - aid: dagger:sdks
   name: Dagger SDKs
   description: >-
-    Native SDKs for Go, Python, TypeScript, PHP, Java, .NET, Elixir,
-    and Rust that generate strongly typed clients against the Dagger
-    Engine's GraphQL schema, allowing pipelines to be written as
-    regular code in the developer's preferred language.
+    Native SDKs for Go, Python, TypeScript, PHP, Java, .NET, Elixir, and Rust that generate strongly typed
+    clients against the Dagger Engine's GraphQL schema, allowing pipelines to be written as regular code
+    in the developer's preferred language.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.dagger.io/sdk/
   tags:
@@ -95,9 +105,8 @@ apis:
 - aid: dagger:daggerverse
   name: Daggerverse Module Index
   description: >-
-    Daggerverse is the free, public index of Dagger Modules.
-    Developers search for, browse, and consume reusable Modules
-    contributed by the Dagger community.
+    Daggerverse is the free, public index of Dagger Modules. Developers search for, browse, and consume
+    reusable Modules contributed by the Dagger community.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://daggerverse.dev/
   tags:
@@ -112,10 +121,8 @@ apis:
 - aid: dagger:cloud
   name: Dagger Cloud
   description: >-
-    Dagger Cloud is the hosted control plane providing pipeline
-    traces, checks, module observability, and team collaboration.
-    It integrates with the local Dagger Engine for seamless trace
-    uploads.
+    Dagger Cloud is the hosted control plane providing pipeline traces, checks, module observability,
+    and team collaboration. It integrates with the local Dagger Engine for seamless trace uploads.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://dagger.io/cloud
   tags:
@@ -128,6 +135,15 @@ apis:
     url: https://dagger.io/cloud
   - type: Signup
     url: https://dagger.cloud/signup
+- aid: dagger:dagger-graphql-api
+  name: Dagger GraphQL API
+  description: The GraphQL API from Dagger — 1 operation(s) for graphql.
+  humanURL: https://docs.dagger.io/api/
+  tags:
+  - GraphQL
+  properties:
+  - type: OpenAPI
+    url: openapi/dagger-graphql-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/dagger-agentic-access.yml
