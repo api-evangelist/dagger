@@ -1,0 +1,14 @@
+{
+  "provider": "dagger",
+  "sources": [
+    "dagger-graphql-api-openapi.yml"
+  ],
+  "outputs": [
+    "dagger-graphql-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
