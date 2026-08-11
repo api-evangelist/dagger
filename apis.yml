@@ -75,8 +75,6 @@ apis:
     url: https://docs.dagger.io/api/internals/
   - type: Blog
     url: https://dagger.io/blog/graphql
-  - type: Capabilities
-    url: capabilities/dagger-graphql-capabilities.yml
   - url: graphql/dagger-graphql.md
     type: GraphQL
 - aid: dagger:sdks
@@ -145,6 +143,14 @@ apis:
   - type: OpenAPI
     url: openapi/dagger-graphql-api-openapi.yml
 common:
+- type: IssueTracker
+  url: https://github.com/dagger/dagger/issues
+- type: Releases
+  url: https://github.com/dagger/dagger/releases
+- type: CodeOfConduct
+  url: https://github.com/dagger/dagger/blob/main/CODE_OF_CONDUCT.md
+- type: ContributionGuide
+  url: https://github.com/dagger/dagger/blob/main/CONTRIBUTING.md
 - type: AgenticAccess
   url: agentic-access/dagger-agentic-access.yml
 - type: DomainSecurity
@@ -185,8 +191,6 @@ common:
   url: json-ld/dagger-context.jsonld
 - type: Vocabulary
   url: vocabulary/dagger-vocabulary.yml
-- type: Capabilities
-  url: capabilities/dagger-graphql-capabilities.yml
 - type: Integrations
   url: https://dagger.io/partners/
 - type: LlmsText
