@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dagger HTTP GraphQL API",
+    "version": "v0.x"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GraphQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute a GraphQL query via GET",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://127.0.0.1:{DAGGER_SESSION_PORT}/query",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "variables",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "operationName",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "GET variant of the GraphQL endpoint (query-string encoded)."
+        },
+        {
+          "info": {
+            "name": "Execute a GraphQL query or mutation against the Dagger engine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://127.0.0.1:{DAGGER_SESSION_PORT}/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Standard GraphQL-over-HTTP POST. Sends a JSON body with `query`,\noptional `variables`, and optional `operationName`. The core\nDagger schema covers container, directory, file, secret, git,\nhttp, host, cacheVolume, currentModule, currentEnv, defaultPlatform,\nand many `loadXFromID` resolvers, plus any fields contributed by\nloaded Dagger modules.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

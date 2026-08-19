@@ -1,0 +1,417 @@
+# Dagger
+
+## Docs
+
+- [LLMs and Environments](cookbook/agents): Learn how to create and use environments with LLMs.
+- [Builds](cookbook/builds): Learn how to build and test your applications using Dagger with practical examples.
+- [Container Images](cookbook/containers): Learn how to work with container images in your applications using Dagger with practical examples.
+- [Errors and Debugging](cookbook/errors): Learn how to handle and debug errors in Dagger workflows.
+- [Filesystems](cookbook/filesystems): Learn how to mount or copy directories and remote repositories to containers using Dagger.
+- [Cookbook](cookbook/index): Learn how to use Dagger to build, test, and deploy your applications with practical examples.
+- [Secrets](cookbook/secrets): Learn how to manage secrets in your applications using Dagger with practical examples.
+- [Services](cookbook/services): Learn how to manage services in your applications using Dagger with practical examples.
+- [Go Custom Application](extending/custom-applications/go): Learn how to extend Dagger by embedding it into your own Go applications, enabling custom workflows and integrations.
+- [PHP Custom Application](extending/custom-applications/php): Learn how to use the Dagger SDK to embed into PHP applications.
+- [Python Custom Application](extending/custom-applications/python): Learn how to use the Dagger SDK to embed into Python applications.
+- [TypeScript Custom Application](extending/custom-applications/typescript): Learn how to extend Dagger by embedding it into your own TypeScript applications, enabling custom workflows and integrations.
+- [Overview](extending/index): In addition to providing a set of core functions and types, the Dagger API can also be extended with custom Dagger Functions and custom types.
+- [Arguments](extending/modules/arguments): Learn how to pass arguments to Dagger Functions, including string, boolean, integer, and directory arguments.
+- [Cache Volumes](extending/modules/cache-volumes): Learn how to use cache volumes in Dagger
+- [Chaining](extending/modules/chaining): Learn how to chain Dagger Functions to create complex workflows, execute commands in containers, and export results.
+- [Constructors](extending/modules/constructors): Learn how to create and use constructors in Dagger modules, including simple and complex constructors, default values, and asynchronous usage.
+- [Custom Types](extending/modules/custom-types): Learn how to create custom types in Dagger
+- [Daggerverse](extending/modules/daggerverse): Learn how to use the Daggerverse to find, share, and publish Dagger Functions and modules, including best practices for module ranking and examples.
+- [Inline Documentation](extending/modules/documentation): Learn how to document Dagger modules and functions, including how to add descriptions for modules, functions, and arguments in Go, Python, TypeScript, PHP, and Java.
+- [Enumerations](extending/modules/enumerations): Learn how to create enums in Dagger
+- [Error Handling](extending/modules/error-handling): Learn how to handle errors in Dagger workflows
+- [Function Caching](extending/modules/function-caching): Control how Dagger caches module function results between runs.
+- [Functions](extending/modules/functions): Learn how to create Dagger functions
+- [Interfaces](extending/modules/interfaces): Dagger interfaces let a function accept or return any object that exposes a
+- [LLM Integration](extending/modules/llm): Learn how to integrate with Large Language Models (LLMs) in Dagger
+- [Module Dependencies](extending/modules/module-dependencies): Learn how to manage module dependencies in Dagger
+- [Module Initialization](extending/modules/modules): Learn how to initialize a Dagger module
+- [Third-Party Packages](extending/modules/packages): Learn how to use packages in Dagger (e.g. Go modules, Python packages)
+- [GraphQL Playground](extending/modules/playground): Learn about the Dagger API Playground and how to use it for testing and sharing API queries.
+- [Remote Repositories](extending/modules/remote-repositories): Learn how to use remote repositories with Dagger, including authentication methods and best practices.
+- [Return Types](extending/modules/return-types): Learn how to use different return types in Dagger functions
+- [Secrets](extending/modules/secrets): Learn how to use secrets in Dagger
+- [Services](extending/modules/services): Learn how to use services in Dagger
+- [State and Getters](extending/modules/state): Learn how to manage state in Dagger
+- [Key Concepts](getting-started/api): Understand key concepts
+- [Using the Dagger CLI](getting-started/api/clients-cli): Learn how to use the Dagger CLI to call the Dagger API directly from the command line, including examples for various workflows.
+- [Using the Dagger API with HTTP and GraphQL](getting-started/api/clients-http): Learn how to use the Dagger API with raw HTTP queries, and how to create custom applications that use the Dagger API.
+- [Using Dagger SDKs](getting-started/api/clients-sdk): Dagger SDKs make it easy to call the Dagger API from your programming language of choice.
+- [Argo Workflows](getting-started/ci-integrations/argo-workflows): Learn how to use Dagger with Argo Workflows.
+- [AWS CodeBuild](getting-started/ci-integrations/aws-codebuild): Learn how to use Dagger with AWS CodeBuild.
+- [Azure Pipelines](getting-started/ci-integrations/azure-pipelines): Learn how to use Dagger with Azure Pipelines.
+- [CircleCI](getting-started/ci-integrations/circleci): Learn how to use Dagger with CircleCI.
+- [GitHub](getting-started/ci-integrations/github): Learn how to use Dagger with GitHub.
+- [GitHub Actions](getting-started/ci-integrations/github-actions): Learn how to use Dagger with GitHub Actions.
+- [GitLab CI](getting-started/ci-integrations/gitlab): Learn how to use Dagger with GitLab CI.
+- [Jenkins](getting-started/ci-integrations/jenkins): Learn how to use Dagger with Jenkins.
+- [TeamCity](getting-started/ci-integrations/teamcity): Learn how to use Dagger with TeamCity.
+- [Tekton](getting-started/ci-integrations/tekton): Learn how to integrate Dagger with Tekton for CI/CD pipelines.
+- [Getting Started](getting-started/index): Learn how to get started with Dagger
+- [Installation](getting-started/installation): Install Dagger and set up your environment
+- [Build an AI Agent](getting-started/quickstarts/agent/index): Learn how to build an AI agent that can interact with Dagger workflows to automate tasks and add features.
+- [Add an AI agent to an Existing Project](getting-started/quickstarts/agent/inproject): Learn how to build an AI agent that can interact with an existing Daggerized project to add features and automate tasks.
+- [Basics](getting-started/quickstarts/basics/index): Learn about Dagger's core concepts, including containers, functions, and modules
+- [Use a Toolchain](getting-started/quickstarts/blueprint/index): Install and use a pre-built toolchain for your project
+- [Build a CI Workflow](getting-started/quickstarts/ci/index): Build a CI workflow with Dagger
+- [CacheVolume](getting-started/types/cache-volume): Learn about the CacheVolume type in Dagger and how to use it for container operations.
+- [Container](getting-started/types/container): Learn about the Container type in Dagger and how to use it for container operations.
+- [Directory](getting-started/types/directory): Learn how to work with directories in Dagger, including copying, mounting, and filtering directories and files.
+- [Env](getting-started/types/env): Learn how to create and use Dagger Environments to configure inputs and outputs for LLMs.
+- [File](getting-started/types/file): Learn about the File type in Dagger and how to use it for filesystem operations.
+- [GitRepository](getting-started/types/git-repository): Learn about the GitRepository type in Dagger and how to use it with Git repositories.
+- [Types](getting-started/types/index): Dagger types are the building blocks of your workflows. They can be composed together to create complex pipelines.
+- [LLM](getting-started/types/llm): Build powerful AI agents with Large Language Models
+- [Secret](getting-started/types/secret): Learn about the Secret object in Dagger and how to use it in your workflows with practical examples.
+- [Service](getting-started/types/service): Learn about the Service object in Dagger and how to use it in your workflows.
+- [Overview](index): Dagger is a platform for automating software delivery. It can build, test, and ship any codebase, reliably and at scale.
+- [Checks](introduction/core-concepts/checks): Validate code quality, security, and standards with automated checks
+- [Functions](introduction/core-concepts/functions): Building blocks for creating workflows
+- [Core Concepts](introduction/core-concepts/index): Understand the fundamental concepts that power Dagger
+- [Toolchains](introduction/core-concepts/toolchains): Install pre-built tools and checks for your project
+- [Examples](introduction/examples): Explore real-world examples of Dagger in action, from AI agents to CI/CD implementations.
+- [Frequently Asked Questions](introduction/faq): Frequently Asked Questions about Dagger
+- [Built-In Caching](introduction/features/caching): Speed up workflows with built-in intelligent caching
+- [Features](introduction/features/index): Explore Dagger's powerful features for building application delivery workflows
+- [LLM Integration](introduction/features/llm): Build powerful AI agents with Large Language Models
+- [Local Defaults (.env)](introduction/features/local-defaults): Persist default arguments for Dagger functions in a .env file
+- [Observability](introduction/features/observability): Visualize workflows in real-time
+- [Programmable Workflows](introduction/features/programmability): Write workflows in code, not YAML
+- [Reusability](introduction/features/reusability): Create, reuse and share frequently-used workflows
+- [Sandboxed Runtime](introduction/features/sandbox): Sandboxed, security-first design
+- [Secrets Integration](introduction/features/secrets): Built-in support for secrets
+- [Ephemeral Services](introduction/features/services): Create services from containers at run-time
+- [Interactive Shell](introduction/features/shell): Iterate faster with familiar Bash-like syntax and autocomplete
+- [Use Cases](introduction/use-cases): Dagger is a platform for composing and running software engineering workflows. Learn how to get started, explore common use cases, and join the community.
+- [API Internals](reference/api/internals): If you're interested in how Dagger uses GraphQL, this page provides additional information on the Dagger API's internals.
+- [Adopting Dagger](reference/best-practices/adopting): Once you have learned the basic concepts, it's time to take the next step: adopting Dagger in your project. We call this daggerizing. But how does one daggerize a project, exactly?
+- [Contributing to Dagger](reference/best-practices/contributing): 
+- [Module Testing and Publishing](reference/best-practices/modules): Learn best practices for testing and publishing Dagger modules.
+- [Monorepos](reference/best-practices/monorepos): Learn how to use Dagger to build and test monorepos with multiple languages and frameworks.
+- [CLI Reference](reference/cli/index): Learn how to use the Dagger CLI to run composable workflows in containers.
+- [Lockfiles](reference/cli/lockfiles): How Dagger lock modes and lock policies work.
+- [Cache](reference/configuration/cache): Learn how Dagger caches build layers and volumes to improve performance and efficiency in your workflows.
+- [Dagger Cloud](reference/configuration/cloud): Learn how to configure Dagger Cloud for your workflows, including organizations, checks, traces, modules, and more.
+- [Custom Certificate Authorities (CA)](reference/configuration/custom-ca): Learn how to configure Dagger to use custom certificate authorities for secure communication with external services.
+- [Custom Runner](reference/configuration/custom-runner): Learn how to set up and configure a custom Dagger runner for executing workflows in your environment.
+- [Engine Configuration](reference/configuration/engine): Learn how to configure the Dagger Engine for your workflows, including logging, security, garbage collection, and more.
+- [LLM Providers](reference/configuration/llm): Learn how to configure Dagger to use various LLM providers for your workflows, including OpenAI, Anthropic, Google Gemini, and more.
+- [Module Configuration](reference/configuration/modules): Learn how to configure Dagger modules, including TypeScript SDK settings, file filters, and alternative runtimes.
+- [Service Proxies](reference/configuration/proxy): Learn how to configure Dagger to use HTTP(S) proxies for connecting to external services.
+- [Apple Container](reference/container-runtimes/apple-container): Learn how to use Dagger with Apple Container.
+- [Docker](reference/container-runtimes/docker): Learn how to use Dagger with Docker.
+- [Container runtimes](reference/container-runtimes/index): Learn how to use Dagger with Docker.
+- [Nerdctl](reference/container-runtimes/nerdctl): Learn how to use Dagger with Nerdctl.
+- [Podman](reference/container-runtimes/podman): Learn how to use Dagger with Podman.
+- [Kubernetes](reference/deployment/kubernetes): Learn how to deploy Dagger on a Kubernetes cluster.
+- [OpenShift](reference/deployment/openshift): Learn how to run Dagger Engine on OpenShift.
+- [Glossary](reference/glossary): A glossary of terms used in Dagger documentation
+- [IDE Setup](reference/ide-setup): Set up your IDE (GoLand, Visual Studio Code, Zed) to work with Dagger
+- [Overview](reference/index): Dagger Reference Documentation
+- [Troubleshooting](reference/troubleshooting): Learn how to troubleshoot common issues with Dagger, including unresponsive functions, network errors, and more.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Address): A standardized address to load containers, directories, secrets, and other object types. Address format depends on the type, and is validated at type selection.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Binding): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/CacheVolume): A directory whose contents persist across runs.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Changeset): A comparison between two directories representing changes that can be applied.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Check): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/CheckGroup): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Client): The root of the DAG.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/ClientFilesyncMirror): An internal persistent filesync mirror.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Cloud): Dagger Cloud configuration and state
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Container): An OCI-compatible container, also known as a Docker container.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/CurrentModule): Reflective module API provided to functions at runtime.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/DiffStat): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Directory): A directory.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Engine): The Dagger engine configuration and state
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/EngineCache): A cache storage for the Dagger engine
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/EngineCacheEntry): An individual cache entry in a cache entry set
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/EngineCacheEntrySet): A set of cache entries returned by a query to a cache
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/EnumTypeDef): A definition of a custom enum defined in a Module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/EnumValueTypeDef): A definition of a value in a custom enum defined in a Module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Env): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/EnvFile): A collection of environment variables.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/EnvVariable): An environment variable name and value.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Error): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/ErrorValue): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/ExportableClient): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/FieldTypeDef): A definition of a field on a custom object defined in a Module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/File): A file.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Function): Function represents a resolver provided by a Module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/FunctionArg): An argument accepted by a function.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/FunctionCall): An active function call.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/FunctionCallArgValue): A value passed as a named argument to a function call.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/GeneratedCode): The result of running an SDK's codegen.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Generator): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/GeneratorGroup): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/GitRef): A git ref (tag, branch, or commit).
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/GitRepository): A git repository.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/HealthcheckConfig): Image healthcheck configuration.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Host): Information about the host environment.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/HTTPState): An internal persistent HTTP state.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/InputTypeDef): A graphql input type, which is essentially just a group of named args.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/InterfaceTypeDef): A definition of a custom interface defined in a Module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/JSONValue): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Label): A simple key value object that represents a label.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/ListTypeDef): A definition of a list type in a Module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/LLM): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/LLMTokenUsage): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Module): A Dagger module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/ModuleConfigClient): The client generated for the module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/ModuleSource): The source needed to load and run a module, along with any metadata about the source such as versions/urls/etc.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/NodeClient): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/ObjectTypeDef): A definition of a custom object defined in a Module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Port): A port exposed by a container.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/RemoteGitMirror): An internal persistent bare git mirror.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/ScalarTypeDef): A definition of a custom scalar defined in a Module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/SDKConfig): The SDK config of the module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/SearchResult): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/SearchSubmatch): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Secret): A reference to a secret value, which can be handled more safely than the value itself.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Service): A content-addressed service providing TCP connectivity.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Socket): A Unix or TCP/IP socket that can be mounted into a container.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/SourceMap): Source location information.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Stat): A file or directory status object.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/SyncerClient): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Terminal): An interactive terminal that clients can connect to.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/TypeDef): A definition of a parameter or return type in a Module.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Up): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/UpGroup): Extends
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/classes/Workspace): A Dagger workspace detected from the current working directory.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/CacheSharingMode): Sharing mode of the cache volume.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/ChangesetMergeConflict): Strategy to use when merging changesets with conflicting changes.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/ChangesetsMergeConflict): Strategy to use when merging multiple changesets with git octopus merge.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/DiffStatKind): The type of change for a diff stat entry.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/ExistsType): File type.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/FileType): File type.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/FunctionCachePolicy): The behavior configured for function result caching.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/ImageLayerCompression): Compression algorithm to use for image layers.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/ImageMediaTypes): Mediatypes to use in published or exported image metadata.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/ModuleSourceExperimentalFeature): Experimental features of a module
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/ModuleSourceKind): The kind of module source.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/NetworkProtocol): Transport layer network protocol associated to a port.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/ReturnType): Expected return type of an execution
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/enumerations/TypeDefKind): Distinguishes the different kinds of TypeDefs.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/index): Enumerations
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/interfaces/Exportable): An object that can be exported to the host.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/interfaces/Node): An object with a globally unique ID.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/interfaces/Syncer): An object that can be force-evaluated.
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/AddressDirectoryOpts): AddressDirectoryOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/AddressFileOpts): AddressFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/AddressID): AddressID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/BindingID): BindingID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/BuildArg): BuildArg = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/CacheVolumeID): CacheVolumeID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ChangesetID): ChangesetID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ChangesetWithChangesetOpts): ChangesetWithChangesetOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ChangesetWithChangesetsOpts): ChangesetWithChangesetsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/CheckGroupID): CheckGroupID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/CheckGroupRunOpts): CheckGroupRunOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/CheckID): CheckID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientCacheVolumeOpts): ClientCacheVolumeOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientContainerOpts): ClientContainerOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientCurrentTypeDefsOpts): ClientCurrentTypeDefsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientEnvFileOpts): ClientEnvFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientEnvOpts): ClientEnvOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientFileOpts): ClientFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientFilesyncMirrorID): ClientFilesyncMirrorID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientGitOpts): ClientGitOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientHttpOpts): ClientHttpOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientLlmOpts): ClientLlmOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientModuleSourceOpts): ClientModuleSourceOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ClientSecretOpts): ClientSecretOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/CloudID): CloudID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerAsServiceOpts): ContainerAsServiceOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerAsTarballOpts): ContainerAsTarballOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerDirectoryOpts): ContainerDirectoryOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerExistsOpts): ContainerExistsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerExportImageOpts): ContainerExportImageOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerExportOpts): ContainerExportOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerFileOpts): ContainerFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerID): ContainerID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerImportOpts): ContainerImportOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerPublishOpts): ContainerPublishOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerStatOpts): ContainerStatOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerTerminalOpts): ContainerTerminalOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerUpOpts): ContainerUpOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithDefaultTerminalCmdOpts): ContainerWithDefaultTerminalCmdOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithDirectoryOpts): ContainerWithDirectoryOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithDockerHealthcheckOpts): ContainerWithDockerHealthcheckOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithEntrypointOpts): ContainerWithEntrypointOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithEnvVariableOpts): ContainerWithEnvVariableOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithExecOpts): ContainerWithExecOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithExposedPortOpts): ContainerWithExposedPortOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithFileOpts): ContainerWithFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithFilesOpts): ContainerWithFilesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithMountedCacheOpts): ContainerWithMountedCacheOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithMountedDirectoryOpts): ContainerWithMountedDirectoryOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithMountedFileOpts): ContainerWithMountedFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithMountedSecretOpts): ContainerWithMountedSecretOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithMountedTempOpts): ContainerWithMountedTempOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithNewFileOpts): ContainerWithNewFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithoutDirectoryOpts): ContainerWithoutDirectoryOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithoutEntrypointOpts): ContainerWithoutEntrypointOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithoutExposedPortOpts): ContainerWithoutExposedPortOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithoutFileOpts): ContainerWithoutFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithoutFilesOpts): ContainerWithoutFilesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithoutMountOpts): ContainerWithoutMountOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithoutUnixSocketOpts): ContainerWithoutUnixSocketOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithSymlinkOpts): ContainerWithSymlinkOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithUnixSocketOpts): ContainerWithUnixSocketOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ContainerWithWorkdirOpts): ContainerWithWorkdirOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/CurrentModuleGeneratorsOpts): CurrentModuleGeneratorsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/CurrentModuleID): CurrentModuleID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/CurrentModuleWorkdirOpts): CurrentModuleWorkdirOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DiffStatID): DiffStatID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectiveArgsOpts): \_\_DirectiveArgsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryAsModuleOpts): DirectoryAsModuleOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryAsModuleSourceOpts): DirectoryAsModuleSourceOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryDockerBuildOpts): DirectoryDockerBuildOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryEntriesOpts): DirectoryEntriesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryExistsOpts): DirectoryExistsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryExportOpts): DirectoryExportOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryFilterOpts): DirectoryFilterOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryID): DirectoryID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectorySearchOpts): DirectorySearchOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryStatOpts): DirectoryStatOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryTerminalOpts): DirectoryTerminalOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryWithDirectoryOpts): DirectoryWithDirectoryOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryWithFileOpts): DirectoryWithFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryWithFilesOpts): DirectoryWithFilesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryWithNewDirectoryOpts): DirectoryWithNewDirectoryOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/DirectoryWithNewFileOpts): DirectoryWithNewFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EngineCacheEntryID): EngineCacheEntryID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EngineCacheEntrySetID): EngineCacheEntrySetID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EngineCacheEntrySetOpts): EngineCacheEntrySetOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EngineCacheID): EngineCacheID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EngineCachePruneOpts): EngineCachePruneOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EngineID): EngineID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EnumTypeDefID): EnumTypeDefID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EnumValueTypeDefID): EnumValueTypeDefID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EnvChecksOpts): EnvChecksOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EnvFileGetOpts): EnvFileGetOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EnvFileID): EnvFileID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EnvFileVariablesOpts): EnvFileVariablesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EnvID): EnvID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EnvServicesOpts): EnvServicesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/EnvVariableID): EnvVariableID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ErrorID): ErrorID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ErrorValueID): ErrorValueID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ExportableID): ExportableID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FieldArgsOpts): \_\_FieldArgsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FieldTypeDefID): FieldTypeDefID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FileAsEnvFileOpts): FileAsEnvFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FileContentsOpts): FileContentsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FileDigestOpts): FileDigestOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FileExportOpts): FileExportOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FileID): FileID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FileSearchOpts): FileSearchOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FileWithReplacedOpts): FileWithReplacedOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/float): float = number
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FunctionArgID): FunctionArgID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FunctionCallArgValueID): FunctionCallArgValueID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FunctionCallID): FunctionCallID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FunctionID): FunctionID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FunctionWithArgOpts): FunctionWithArgOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FunctionWithCachePolicyOpts): FunctionWithCachePolicyOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/FunctionWithDeprecatedOpts): FunctionWithDeprecatedOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/GeneratedCodeID): GeneratedCodeID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/GeneratorGroupChangesOpts): GeneratorGroupChangesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/GeneratorGroupID): GeneratorGroupID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/GeneratorID): GeneratorID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/GitRefID): GitRefID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/GitRefTreeOpts): GitRefTreeOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/GitRepositoryBranchesOpts): GitRepositoryBranchesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/GitRepositoryID): GitRepositoryID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/GitRepositoryTagsOpts): GitRepositoryTagsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/HealthcheckConfigID): HealthcheckConfigID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/HostDirectoryOpts): HostDirectoryOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/HostFileOpts): HostFileOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/HostFindUpOpts): HostFindUpOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/HostID): HostID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/HostServiceOpts): HostServiceOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/HostTunnelOpts): HostTunnelOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/HTTPStateID): HTTPStateID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ID): ID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/InputTypeDefID): InputTypeDefID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/InterfaceTypeDefID): InterfaceTypeDefID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/JSON): JSON = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/JSONValueContentsOpts): JSONValueContentsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/JSONValueID): JSONValueID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/LabelID): LabelID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ListTypeDefID): ListTypeDefID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/LLMID): LLMID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/LLMTokenUsageID): LLMTokenUsageID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ModuleChecksOpts): ModuleChecksOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ModuleConfigClientID): ModuleConfigClientID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ModuleGeneratorsOpts): ModuleGeneratorsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ModuleID): ModuleID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ModuleServeOpts): ModuleServeOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ModuleServicesOpts): ModuleServicesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ModuleSourceID): ModuleSourceID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ObjectTypeDefID): ObjectTypeDefID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/PipelineLabel): PipelineLabel = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/Platform): Platform = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/PortForward): PortForward = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/PortID): PortID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/RemoteGitMirrorID): RemoteGitMirrorID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ScalarTypeDefID): ScalarTypeDefID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/SDKConfigID): SDKConfigID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/SearchResultID): SearchResultID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/SearchSubmatchID): SearchSubmatchID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/SecretID): SecretID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ServiceEndpointOpts): ServiceEndpointOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ServiceID): ServiceID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ServiceStopOpts): ServiceStopOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ServiceTerminalOpts): ServiceTerminalOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/ServiceUpOpts): ServiceUpOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/SocketID): SocketID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/SourceMapID): SourceMapID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/StatID): StatID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/SyncerID): SyncerID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TerminalID): TerminalID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeDefID): TypeDefID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeDefWithEnumMemberOpts): TypeDefWithEnumMemberOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeDefWithEnumOpts): TypeDefWithEnumOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeDefWithEnumValueOpts): TypeDefWithEnumValueOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeDefWithFieldOpts): TypeDefWithFieldOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeDefWithInterfaceOpts): TypeDefWithInterfaceOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeDefWithObjectOpts): TypeDefWithObjectOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeDefWithScalarOpts): TypeDefWithScalarOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeEnumValuesOpts): \_\_TypeEnumValuesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeFieldsOpts): \_\_TypeFieldsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/TypeInputFieldsOpts): \_\_TypeInputFieldsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/UpGroupID): UpGroupID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/UpID): UpID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/Void): Void = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/WorkspaceChecksOpts): WorkspaceChecksOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/WorkspaceDirectoryOpts): WorkspaceDirectoryOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/WorkspaceFindUpOpts): WorkspaceFindUpOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/WorkspaceGeneratorsOpts): WorkspaceGeneratorsOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/WorkspaceID): WorkspaceID = string & object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/type-aliases/WorkspaceServicesOpts): WorkspaceServicesOpts = object
+- [TypeScript SDK Reference](reference/typescript/api/client.gen/variables/dag): const dag: Client
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/DaggerSDKError): The base error. Every other error inherits this error.
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/DockerImageRefValidationError): This error is thrown if the passed image reference does not pass validation and is not compliant with the
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/EngineSessionConnectionTimeoutError): This error is thrown if the EngineSession does not manage to parse the required port successfully because the sessions connection timed out.
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/EngineSessionConnectParamsParseError): This error is thrown if the EngineSession does not manage to parse the required connection parameters from the session binary
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/EngineSessionError): This error is thrown if the EngineSession does not manage to parse the required port successfully because a EOF is read before any valid port.
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/ExecError): API error from an exec operation in a pipeline.
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/FunctionNotFound): The base error. Every other error inherits this error.
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/GraphQLRequestError): This error originates from the dagger engine. It means that some error was thrown and sent back via GraphQL.
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/InitEngineSessionBinaryError): This error is thrown if the dagger binary cannot be copied from the dagger docker image and copied to the local host.
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/IntrospectionError): The base error. Every other error inherits this error.
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/NotAwaitedRequestError): This error is thrown when the compute function isn't awaited.
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/TooManyNestedObjectsError): Dagger only expects one response value from the engine. If the engine returns more than one value this error is thrown.
+- [TypeScript SDK Reference](reference/typescript/common/errors/classes/UnknownDaggerError): This error is thrown if the dagger SDK does not identify the error and just wraps the cause.
+- [TypeScript SDK Reference](reference/typescript/common/errors/index): Classes
+- [TypeScript SDK Reference](reference/typescript/common/errors/variables/ERROR_CODES): const ERROR\_CODES: object
+- [TypeScript SDK Reference](reference/typescript/connect/functions/connect): connect(cb, config?): Promise\
+- [TypeScript SDK Reference](reference/typescript/connect/functions/connection): connection(fct, cfg?): Promise\
+- [TypeScript SDK Reference](reference/typescript/connect/index): Type Aliases
+- [TypeScript SDK Reference](reference/typescript/connect/type-aliases/CallbackFct): CallbackFct = (client) => Promise\
+- [TypeScript SDK Reference](reference/typescript/index): A client package for running Dagger pipelines.
+- [TypeScript SDK Reference](reference/typescript/modules): Modules
