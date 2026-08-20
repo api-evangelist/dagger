@@ -46,6 +46,21 @@ tags:
 - GraphQL
 - Modules
 - OCI
+- Open-Source
+- Pipelines
+- Programmable Pipelines
+- SDK
+tags_raw:
+- Build Automation
+- BuildKit
+- CI/CD
+- Containers
+- DAG
+- Daggerverse
+- DevOps
+- GraphQL
+- Modules
+- OCI
 - Open Source
 - Pipelines
 - Programmable Pipelines
@@ -86,6 +101,16 @@ apis:
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.dagger.io/sdk/
   tags:
+  - .NET
+  - Elixir
+  - Go
+  - Java
+  - PHP
+  - Python
+  - Rust
+  - SDK
+  - TypeScript
+  tags_raw:
   - .NET
   - Elixir
   - Go
