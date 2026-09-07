@@ -1,0 +1,137 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  https://docs.dagger.io/cli/reference/ (command surface, fetched 2026-09-07) and
+  https://docs.dagger.io/cli/install (install methods, quoted verbatim)
+provider: Dagger
+providerId: dagger
+name: dagger
+description: >-
+  The Dagger CLI is the primary human and CI entry point to the engine. It starts
+  a session, installs and runs modules, exposes the GraphQL API, and shells out to
+  Dagger Cloud. It is not a thin wrapper over a REST API — it is how the engine is
+  driven.
+docs: https://docs.dagger.io/cli/reference/
+install:
+- method: script
+  platforms: [macOS, Linux]
+  command: >-
+    curl -fsSL https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=1.0.0-beta.11 BIN_DIR=/usr/local/bin sh
+  note: Verbatim from https://docs.dagger.io/cli/install
+- method: script
+  platforms: [Windows]
+  command: >-
+    iwr -useb https://dl.dagger.io/dagger/install.ps1 | iex; Install-Dagger -DaggerVersion 1.0.0-beta.11 -AddToPath
+  note: PowerShell 7+. Verbatim from https://docs.dagger.io/cli/install
+- method: homebrew
+  platforms: [macOS]
+  command: brew install dagger/tap/dagger
+  tap: https://github.com/dagger/homebrew-tap
+- method: winget
+  platforms: [Windows]
+  command: winget install Dagger.Cli
+- method: nix
+  platforms: [Linux, macOS]
+  repo: https://github.com/dagger/nix
+  note: >-
+    The org publishes a nix repo; the exact flake invocation is not quoted here
+    because the install page does not state one.
+version_pinning:
+  note: >-
+    "Homebrew and winget carry the latest stable release only, which may differ
+    from the version this documentation covers." A specific engine release can be
+    selected with `export DAGGER_X_RELEASE=v1.0.0-beta.11` or the flag
+    `--x-release=v1.0.0-beta.11`.
+  finding: >-
+    The current docs install DAGGER_VERSION=1.0.0-beta.11 while the GitHub release
+    train's latest tag is v0.21.9 (2026-08-26). Two lines are live at once — the
+    0.21.x stable engine and the 1.0.0-beta.N line the docs now target. A
+    consumer following the install page does not get the version the Releases
+    page calls latest.
+commands:
+- name: activity
+  description: Show recent activity (runs, traces, etc.) for this workspace
+  group: observability
+- name: agent
+  description: Compose installed agent modules and access an interactive prompt
+  group: agents
+- name: api
+  description: Direct access to the GraphQL API for advanced automation
+  group: api
+  note: >-
+    This is the CLI door onto the same surface described by
+    openapi/dagger-graphql-api-openapi.yml and graphql/dagger-schema.graphqls.
+- name: check
+  description: Verify your project — tests, linters, type checks, security scans, etc.
+  group: workflows
+- name: cloud
+  description: Manage Dagger Cloud services and integrations
+  group: cloud
+- name: generate
+  description: Generate derived files for your project — code, SDKs, types, docs, etc.
+  group: workflows
+- name: install
+  description: Add a module into your workspace
+  group: modules
+- name: installed
+  description: Display currently installed modules
+  group: modules
+- name: llm
+  description: Configure LLM provider settings and authentication
+  group: agents
+- name: module
+  description: Author and configure modules, manage dependencies
+  group: modules
+- name: sdk
+  description: Install and manage SDKs
+  group: modules
+- name: search
+  description: Locate modules available for installation
+  group: modules
+  note: Backs discovery against the Daggerverse index at https://daggerverse.dev/
+- name: settings
+  description: Manage module configuration values
+  group: modules
+- name: setup
+  description: Verify Dagger is properly configured
+  group: workspace
+- name: uninstall
+  description: Remove a module from your workspace
+  group: modules
+- name: up
+  description: Run your project's services for local development
+  group: workflows
+- name: update
+  description: Refresh installed module state
+  group: modules
+- name: version
+  description: Display the current Dagger version
+  group: workspace
+- name: workspace
+  description: Inspect or configure workspace settings
+  group: workspace
+command_count: 19
+key_flows:
+- name: Call the API directly
+  steps:
+  - dagger api
+  note: >-
+    Equivalent to POSTing to http://127.0.0.1:$DAGGER_SESSION_PORT/query with the
+    session token; see skills/.
+- name: Adopt a community module
+  steps:
+  - dagger search <term>
+  - dagger install <module ref>
+  - dagger installed
+- name: Run project checks
+  steps:
+  - dagger check
+  note: Cloud Checks (dagger.io/changelog, early access) triggers this on git events.
+withdrawn:
+- name: dagger mcp
+  note: >-
+    Present in earlier releases (PR #9935); NOT in the current CLI reference —
+    fetched https://docs.dagger.io/cli/reference/ on 2026-09-07 and found no
+    occurrence of "dagger mcp". Recorded so a reader does not chase a command
+    that has left the surface. Dagger's live MCP surface is container-use; see
+    mcp/dagger-mcp.yml.

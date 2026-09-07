@@ -1,0 +1,39 @@
+generated: '2026-09-07'
+method: generated
+source: >-
+  Authored by API Evangelist from openapi/dagger-graphql-api-openapi.yml
+  (operationIds supplied by overlays/dagger-graphql-api-overlay.yaml),
+  graphql/dagger-schema.graphqls, and Dagger's own documentation. No
+  provider-published skills or AGENTS.md exist — probed
+  https://raw.githubusercontent.com/dagger/dagger/main/AGENTS.md on 2026-09-07,
+  HTTP 404.
+provider: Dagger
+providerId: dagger
+note: >-
+  Dagger's REST surface is a single GraphQL transport operation, so these skills
+  are grounded in the two overlay-assigned operationIds plus real field names read
+  from the published SDL. Every GraphQL field named in a skill exists in
+  graphql/dagger-schema.graphqls.
+skills:
+- name: dagger-query-engine
+  file: dagger-query-engine.md
+  api: dagger:graphql
+  operations: [executeGraphQLQuery, executeGraphQLQueryViaGet]
+  summary: >-
+    Reach the engine's GraphQL API over HTTP inside a session, and handle the
+    200-on-error convention that trips REST-shaped clients.
+- name: dagger-build-and-publish
+  file: dagger-build-and-publish.md
+  api: dagger:graphql
+  operations: [executeGraphQLQuery]
+  summary: >-
+    Build a container from source and publish it, with the sandbox rules for host
+    access and an explicit warning that publish has no reversal path.
+- name: dagger-run-service
+  file: dagger-run-service.md
+  api: dagger:graphql
+  operations: [executeGraphQLQuery]
+  summary: >-
+    Stand up and tear down a backing service, the one write surface here with a
+    real reversal operation (Service.stop).
+skill_count: 3

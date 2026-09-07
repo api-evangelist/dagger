@@ -1,0 +1,131 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  Registry metadata endpoints (registry.npmjs.org, pypi.org, proxy.golang.org,
+  repo.packagist.org, hex.pm, crates.io, api.nuget.org) plus the first-party SDK
+  directories at https://github.com/dagger/dagger/tree/main/sdk and the SDK docs
+  at https://docs.dagger.io/api/clients
+provider: Dagger
+providerId: dagger
+note: >-
+  Every SDK below is developed in-tree at github.com/dagger/dagger under sdk/<lang>
+  and released from the same tagged release train as the engine, so all are
+  first-party. Two release trains are visible in the registry data: the engine and
+  the Go/Python/TypeScript/PHP SDKs ship on the 0.21.x line, while the Rust, Elixir
+  and Java SDKs ship on a 1.0.0-beta.N line cut from the same commits.
+packages:
+- name: dagger.io/dagger
+  registry: go
+  language: Go
+  official: true
+  version: v0.21.9
+  published: '2026-08-26'
+  url: https://pkg.go.dev/dagger.io/dagger
+  source: https://github.com/dagger/dagger/tree/main/sdk/go
+  note: >-
+    Published through the read-only mirror github.com/dagger/dagger-go-sdk; the
+    module proxy resolved v0.21.9 at tag refs/tags/v0.21.9.
+- name: dagger-io
+  registry: pypi
+  language: Python
+  official: true
+  version: 0.21.9
+  published: '2026-08-26'
+  url: https://pypi.org/project/dagger-io/
+  source: https://github.com/dagger/dagger/tree/main/sdk/python
+  docs: https://docs.dagger.io/reference/python/
+- name: '@dagger.io/dagger'
+  registry: npm
+  language: TypeScript
+  official: true
+  version: 0.21.9
+  published: '2026-08-26'
+  url: https://www.npmjs.com/package/@dagger.io/dagger
+  source: https://github.com/dagger/dagger/tree/main/sdk/typescript
+- name: dagger/dagger
+  registry: packagist
+  language: PHP
+  official: true
+  version: v1.0.0-beta.11
+  published: '2026-08-27'
+  url: https://packagist.org/packages/dagger/dagger
+  source: https://github.com/dagger/dagger/tree/main/sdk/php
+  note: >-
+    Mirrored read-only at github.com/dagger/dagger-php-sdk; the canonical source
+    stays in the monorepo.
+- name: dagger-sdk
+  registry: crates
+  language: Rust
+  official: true
+  version: 1.0.0-beta.11
+  published: '2026-08-27'
+  url: https://crates.io/crates/dagger-sdk
+  source: https://github.com/dagger/dagger/tree/main/sdk/rust
+- name: dagger
+  registry: hex
+  language: Elixir
+  official: true
+  version: 1.0.0-beta.11
+  published: '2026-08-27'
+  url: https://hex.pm/packages/dagger
+  source: https://github.com/dagger/dagger/tree/main/sdk/elixir
+- name: Dagger.SDK
+  registry: nuget
+  language: .NET
+  official: true
+  version: 0.1.0
+  published: null
+  url: https://www.nuget.org/packages/Dagger.SDK
+  source: https://github.com/dagger/dagger/tree/main/sdk/dotnet
+  note: >-
+    NuGet registration reports the sentinel publish date 1900-01-01, which NuGet
+    uses for an unlisted package, so no real publication date could be read;
+    version recorded, date honestly null. Package authors "Dagger", description
+    "Official Dagger SDK for .NET", licence Apache-2.0. Only 0.1.0 exists on the
+    feed while the in-tree .NET SDK has continued to move, so this is the
+    strongest abandonment signal in Dagger's package set.
+- name: io.dagger:dagger-java-sdk
+  registry: maven
+  language: Java
+  official: true
+  version: null
+  published: null
+  url: https://github.com/dagger/dagger/tree/main/sdk/java
+  source: https://github.com/dagger/dagger/tree/main/sdk/java
+  note: >-
+    NOT PRESENT ON MAVEN CENTRAL. Probed 2026-09-07:
+    https://repo1.maven.org/maven2/io/dagger/dagger-java-sdk/maven-metadata.xml
+    returned HTTP 404, and the Central browse API returned
+    totalResultCount 0 for namespace io.dagger / name dagger-java-sdk.
+    The coordinate is real — sdk/java/pom.xml declares groupId io.dagger,
+    artifactId dagger-java-sdk, version 1.0.0-beta.12 — but no published
+    Central artifact could be found, so version and published are honestly
+    null rather than copied from the pom. A Java consumer cannot resolve
+    this SDK from Central today.
+- name: container-use
+  registry: cdn
+  language: Go
+  official: true
+  version: null
+  published: null
+  url: https://github.com/dagger/container-use/releases
+  source: https://github.com/dagger/container-use
+  note: >-
+    The container-use MCP server binary is distributed by Homebrew tap
+    (brew install dagger/tap/container-use) and an unpinned install script
+    (curl -fsSL https://raw.githubusercontent.com/dagger/container-use/main/install.sh | bash).
+    The install URL floats to latest, so a consumer cannot tell what version they
+    are getting; no registry metadata endpoint exists to query. Recorded null
+    deliberately.
+distribution:
+  cli:
+    name: dagger
+    note: >-
+      The dagger CLI is distributed by install script, Homebrew
+      (github.com/dagger/homebrew-tap), winget and nix, not by a language package
+      registry. See cli/dagger-cli.yml.
+counts:
+  total: 9
+  official: 9
+  with_version: 7
+  first_party_but_unpublished: 1

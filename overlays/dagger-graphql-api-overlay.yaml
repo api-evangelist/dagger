@@ -1,0 +1,72 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Dagger HTTP GraphQL API
+  version: 1.0.0
+x-generated: '2026-09-07'
+x-method: generated
+x-source: >-
+  Enhancements authored by API Evangelist over openapi/dagger-graphql-api-openapi.yml.
+  Facts applied here are taken from Dagger's own documentation:
+  https://docs.dagger.io/0.21/getting-started/api/http/ (endpoint, port and token
+  environment variables, HTTP Basic auth, the curl example),
+  https://docs.dagger.io/features/security/ (sandboxing / trust boundary),
+  and the engine GraphQL SDL saved at graphql/dagger-schema.graphqls.
+  The original specification is never mutated.
+extends: ../openapi/dagger-graphql-api-openapi.yml
+actions:
+- target: $.paths['/query'].post
+  description: >-
+    Give the POST transport a stable operationId so tooling, the tool crosswalk
+    and the packaged Agent Skills can address it by name. The source spec ships
+    no operationId on either operation.
+  update:
+    operationId: executeGraphQLQuery
+- target: $.paths['/query'].get
+  description: Give the GET transport a stable operationId.
+  update:
+    operationId: executeGraphQLQueryViaGet
+- target: $.info
+  description: >-
+    Record that the machine-readable contract for what can actually be asked over
+    this transport is the GraphQL SDL, not the REST surface. The REST surface is a
+    single transport operation; the schema behind it carries 84 object types.
+  update:
+    x-contract-of-record:
+      format: graphql-sdl
+      url: graphql/dagger-schema.graphqls
+      upstream: https://github.com/dagger/dagger/blob/main/docs/docs-graphql/schema.graphqls
+      object_types: 84
+      enums: 18
+      note: >-
+        The schema is dynamic — loaded Dagger modules extend it at runtime — so
+        this SDL is the core schema, not the whole of any given session's schema.
+- target: $.servers[0]
+  description: >-
+    Make explicit that this is a per-session loopback endpoint, not a hosted
+    service, so no consumer mistakes it for a callable public host.
+  update:
+    x-server-kind: per-session-loopback
+    x-lifecycle: >-
+      The port is assigned per `dagger run` session and published in
+      DAGGER_SESSION_PORT; the endpoint does not exist between sessions.
+- target: $.components.securitySchemes.SessionTokenBasic
+  description: Add the documented retrieval and handling rules for the session token.
+  update:
+    x-credential-source: DAGGER_SESSION_TOKEN environment variable
+    x-credential-lifetime: single session
+    x-docs: https://docs.dagger.io/0.21/getting-started/api/http/
+    x-handling: >-
+      "Treat the DAGGER_SESSION_TOKEN value as you would any other sensitive
+      credential." — Dagger documentation.
+- target: $.paths['/query'].post
+  description: >-
+    Record the GraphQL-over-HTTP status-code convention this transport follows,
+    which is what makes naive REST error handling wrong here.
+  update:
+    x-error-convention:
+      spec: GraphQL over HTTP
+      note: >-
+        A successful transport returns HTTP 200 even when the operation failed;
+        failures are carried in the `errors` array of the response body. A client
+        that only checks the HTTP status will silently treat failures as
+        successes. See errors/dagger-problem-types.yml.

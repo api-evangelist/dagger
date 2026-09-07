@@ -1,15 +1,76 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/dagger-openapi.yml
+generated: '2026-09-07'
+method: searched
+source: >-
+  https://docs.dagger.io/0.21/getting-started/api/http/ (session endpoint, token,
+  Basic auth, verbatim curl example), https://docs.dagger.io/configuration/cloud/
+  (DAGGER_CLOUD_TOKEN), the OIDC discovery document probed at
+  https://api.dagger.cloud/.well-known/openid-configuration and saved at
+  well-known/dagger-openid-configuration.json, and the securitySchemes block of
+  openapi/dagger-graphql-api-openapi.yml
+docs: https://docs.dagger.io/0.21/getting-started/api/http/
 summary:
   types:
   - http
+  - oidc
+  oauth2: false
+  api_key: false
+  mtls: false
 schemes:
 - name: SessionTokenBasic
   type: http
   scheme: basic
-  description: |-
-    HTTP Basic auth where the username is the value of the
-    DAGGER_SESSION_TOKEN environment variable and the password is empty.
+  surface: Dagger Engine GraphQL API
+  description: >-
+    HTTP Basic auth where the username is the value of the DAGGER_SESSION_TOKEN
+    environment variable and the password is empty.
+  credential_source: DAGGER_SESSION_TOKEN environment variable, set per session by `dagger run`
+  lifetime: single session
+  rotation: automatic — a new token is minted for every session
+  docs_quote: >-
+    "Dagger protects the exposed API with an HTTP Basic authentication token which
+    can be retrieved from the DAGGER_SESSION_TOKEN variable. Treat the
+    DAGGER_SESSION_TOKEN value as you would any other sensitive credential."
+  example: |-
+    curl -s \
+      -u $DAGGER_SESSION_TOKEN: \
+      -H "content-type:application/json" \
+      -d @- \
+      http://127.0.0.1:$DAGGER_SESSION_PORT/query
   sources:
-  - openapi/dagger-openapi.yml
+  - openapi/dagger-graphql-api-openapi.yml
+  - https://docs.dagger.io/0.21/getting-started/api/http/
+- name: DaggerCloudToken
+  type: apiKey
+  in: environment
+  surface: Dagger Cloud
+  description: >-
+    Dagger Cloud telemetry upload is authenticated with a token supplied in the
+    DAGGER_CLOUD_TOKEN environment variable. Documented for Kubernetes as a
+    secret named `dagger-cloud` holding that value.
+  credential_source: DAGGER_CLOUD_TOKEN environment variable
+  sources:
+  - https://docs.dagger.io/configuration/cloud/
+- name: DaggerCloudOIDC
+  type: openIdConnect
+  surface: Dagger Cloud (api.dagger.cloud)
+  description: >-
+    api.dagger.cloud publishes an OIDC discovery document. It advertises id_token
+    issuance only — issuer https://api.dagger.cloud, jwks_uri
+    https://api.dagger.cloud/jwks (200, one RS256 RSA key),
+    response_types_supported [id_token], subject_types_supported [public] — with
+    no authorization_endpoint, token_endpoint or scopes_supported. It is an
+    identity-token issuer for verifying Dagger Cloud workload identity, not an
+    OP an application runs an authorization code flow against.
+  discovery: https://api.dagger.cloud/.well-known/openid-configuration
+  probed: '2026-09-07'
+  http_status: 200
+  artifact: well-known/dagger-openid-configuration.json
+scopes:
+  published: false
+  note: >-
+    No OAuth 2.0 scopes exist. There is no oauth2 securityScheme in the contract
+    and /.well-known/oauth-authorization-server returns 404 on every Dagger host
+    probed. Authorization on the engine is all-or-nothing per session; the real
+    access control is the sandbox — a function reaches only the Directory,
+    Socket, Service and Secret values explicitly passed to it
+    (https://docs.dagger.io/features/security/).

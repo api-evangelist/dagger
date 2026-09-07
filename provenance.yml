@@ -7,7 +7,13 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   authentication/dagger-authentication.yml:
-    method: derived
+    method: searched
+    evidence: declared in the artifact
+  changelog/dagger-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
+  cli/dagger-cli.yml:
+    method: searched
     evidence: declared in the artifact
   collections/dagger-graphql-api.opencollection.json:
     method: derived
@@ -21,82 +27,34 @@ artifacts:
   collections/dagger.postman_collection.json:
     method: derived
     evidence: openapi/dagger
+  conformance/dagger-conformance.yml:
+    method: searched
+    evidence: declared in the artifact
+  conventions/dagger-conventions.yml:
+    method: searched
+    evidence: declared in the artifact
+  data-model/dagger-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/dagger-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   finops/dagger-finops.yml:
     method: generated
     evidence: declared in the artifact
+  graphql/dagger-graphql-schema.yml:
+    method: searched
+    evidence: declared in the artifact
   graphql/dagger-graphql.md:
+    method: unknown
+    evidence: no authorship recorded
+  graphql/dagger-schema.graphqls:
     method: unknown
     evidence: no authorship recorded
   json-ld/dagger-context.jsonld:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T094130.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-23T182523.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-26T223651.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T083119.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-27T190208.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T115055.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T170848.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T172558.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T192327.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-28T200725.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T133250.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T151044.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T162206.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-07-31T202106.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163141.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T163302.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-01T171935.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T113057.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-03T161012.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-04T083143.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-05T153418.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-06T210741.yml:
+  kin/checks-2026-09-06T224210.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-08-07T135032.yml:
@@ -177,21 +135,126 @@ artifacts:
   kin/score-2026-08-28T221322.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T213958.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-29T230545.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T203505.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-30T220315.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-08-31T223420.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T063623.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T210448.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-01T222808.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-02T224043.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T161828.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-03T174231.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T062714.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T212454.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-04T224856.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T055819.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T072335.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T144739.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T195450.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-05T211839.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T011047.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T211804.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-06T224210.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/dagger-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
   llms/dagger-llms.txt:
     method: searched
     evidence: 'derive-llms-provenance.py: harvested'
+  mcp/dagger-mcp.yml:
+    method: searched
+    evidence: declared in the artifact
+  mcp/dagger-tool-crosswalk.yml:
+    method: derived
+    evidence: declared in the artifact
+  openapi/_original/dagger-openapi.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
   openapi/dagger-graphql-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
-  plans/dagger-plans-pricing.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/dagger-graphql-api-overlay.yaml:
     method: generated
     evidence: declared in the artifact
+  packages/dagger-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  plans/dagger-plans-pricing.yml:
+    method: searched
+    evidence: declared in the artifact
   rate-limits/dagger-rate-limits.yml:
-    method: generated
+    method: searched
     evidence: declared in the artifact
   security/dagger-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/dagger-build-and-publish.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/dagger-query-engine.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/dagger-run-service.md:
+    method: generated
+    evidence: declared in the artifact
   vocabulary/dagger-vocabulary.yml:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/dagger-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/dagger-well-known.yml:
     method: unknown
     evidence: no authorship recorded

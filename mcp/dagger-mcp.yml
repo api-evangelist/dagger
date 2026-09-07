@@ -1,0 +1,131 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  https://github.com/dagger/container-use (first-party Dagger repo, Apache-2.0),
+  its README at
+  https://raw.githubusercontent.com/dagger/container-use/main/README.md,
+  the tool definitions read verbatim from
+  https://raw.githubusercontent.com/dagger/container-use/main/mcpserver/tools.go,
+  the quickstart at https://container-use.com/quickstart, and the Dagger MCP
+  feature page at https://docs.dagger.io/features/mcp/
+provider: Dagger
+providerId: dagger
+name: Container Use
+status: published
+deployment:
+  mode: local-stdio
+  install: container-use stdio
+  package: https://github.com/dagger/container-use
+  auth: none
+  verified: searched
+  note: >-
+    NO REMOTE ENDPOINT. Container Use is a local binary an operator installs and
+    an MCP client launches over stdio; there is no https URL an agent can POST to.
+    Documented client registration, verbatim from the README:
+    `claude mcp add container-use -- container-use stdio`. The binary is also
+    aliased `cu`, so `cu stdio` is equivalent. Install, verbatim:
+    `brew install dagger/tap/container-use` (macOS) or
+    `curl -fsSL https://raw.githubusercontent.com/dagger/container-use/main/install.sh | bash`
+    (all platforms). Auth is none because the server runs as the local user
+    against local git worktrees and a local Dagger engine.
+what_it_does: >-
+  Container Use gives each coding agent its own isolated development environment —
+  a git branch plus a Dagger container — so several agents can work in parallel on
+  the same repository without colliding. Environments are checkpointable as
+  container images and every agent action is committed to a container-use/<id>
+  git ref, which is what makes the agent's work auditable and revertible.
+tools:
+- name: environment_create
+  description: >-
+    Creates a new development environment. The environment is the result of the
+    setup commands on top of the base image. Environment configuration is managed
+    by the user via cu config commands.
+  parameters:
+  - name: title
+    required: true
+    description: Short description of the work that is happening in this environment.
+  - name: from_git_ref
+    required: false
+    description: >-
+      Git reference to create the environment from (e.g., HEAD, main,
+      feature-branch, SHA). Defaults to HEAD if not specified.
+  - name: allow_replace
+    required: false
+    description: >-
+      If true and an environment already exists for this session, destructively
+      replace it with a new one. Single-tenant mode only.
+- name: environment_open
+  description: Opens an existing environment. Return format is same as environment_create.
+- name: environment_list
+  description: List available environments
+- name: environment_config
+  description: Make environment config changes such as base image and setup commands.
+- name: environment_update_metadata
+  description: >-
+    Update environment metadata such as title. This updates the descriptive
+    information about what work is being done in the environment.
+- name: environment_run_cmd
+  description: Run a terminal command inside a NEW container within the environment.
+  parameters:
+  - name: command
+    description: The terminal command to execute. If empty, the environment's default command is used.
+  - name: shell
+    description: 'The shell that will be interpreting this command (default: sh)'
+  - name: background
+    description: Run the command in the background
+  - name: use_entrypoint
+    description: Use the image entrypoint, if present, by prepending it to the args.
+  - name: ports
+    description: >-
+      Ports to expose. Only works with background environments. For each port,
+      returns the environment_internal and host_external addresses.
+- name: environment_file_read
+  description: Read the contents of a file, specifying a line range or the entire file.
+- name: environment_file_list
+  description: List the contents of a directory
+- name: environment_file_write
+  description: Write the contents of a file.
+- name: environment_file_edit
+  description: Find and replace text in a file.
+- name: environment_file_delete
+  description: Deletes a file at the specified path.
+- name: environment_add_service
+  description: Add a service to the environment (e.g. database, cache, etc.)
+- name: environment_checkpoint
+  description: Checkpoints an environment in its current state as a container.
+- name: environment_log
+  description: >-
+    View the development history of an environment, showing all commits made by
+    the agent plus command execution notes.
+- name: environment_diff
+  description: >-
+    View the cumulative changes made in an environment from its creation point,
+    showing all code modifications as a unified diff.
+tool_count: 15
+tools_source: >-
+  Read from mcpserver/tools.go on the main branch. Names and descriptions are
+  verbatim; full JSON inputSchemas were not introspected because the server is
+  stdio-only and was not launched during this pass. Parameter lists shown above
+  are the documented mcp.Description strings for that tool, not a synthesised
+  schema.
+related:
+  - name: dagger mcp
+    status: withdrawn-from-current-cli
+    note: >-
+      Earlier Dagger releases shipped a `dagger mcp` subcommand that exposed a
+      Dagger module as an stdio MCP server (dagger/dagger PR #9935, issues #10805
+      and #13023). It is NOT listed in the current CLI reference at
+      https://docs.dagger.io/cli/reference/ (fetched 2026-09-07, no occurrence of
+      "dagger mcp"), so it is recorded here as history, not as a live surface.
+  - name: LLM.withMCPServer
+    direction: inbound
+    note: >-
+      Dagger's own LLM type consumes external MCP servers via withMCPServer(),
+      passing the server as a Dagger Service. That makes Dagger an MCP CLIENT as
+      well as a server host. Documented at https://docs.dagger.io/features/mcp/
+      and present in the engine schema as LLM.withMCPServer.
+limitations:
+  - >-
+    "Currently, only Dagger modules with no required constructor arguments are
+    supported when exposing an MCP server outside Dagger."
+    (https://docs.dagger.io/features/mcp/)

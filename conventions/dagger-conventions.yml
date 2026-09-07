@@ -1,0 +1,157 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  https://docs.dagger.io/0.21/getting-started/api/http/ (transport, auth, curl
+  example), https://docs.dagger.io/features/security/ (sandboxing and the trust
+  boundary), https://docs.dagger.io/api/internals/ (lazy evaluation, query
+  pipelining, state), graphql/dagger-schema.graphqls (directives and types), and
+  openapi/dagger-graphql-api-openapi.yml
+provider: Dagger
+providerId: dagger
+summary: >-
+  Dagger's runtime semantics are unlike a resource REST API and reading it as one
+  produces wrong conclusions. There is a single transport operation; everything a
+  caller can do lives in a GraphQL schema that the engine extends at runtime when
+  modules load. Calls are lazy and content-addressed: a query builds a DAG and
+  nothing executes until a leaf value is requested, and identical inputs resolve
+  from cache rather than re-running. That property is what stands in for both
+  retries and idempotency here.
+auth:
+  style: http-basic
+  credential: DAGGER_SESSION_TOKEN as the username, empty password
+  scope: single session
+  transport: >-
+    Loopback only — http://127.0.0.1:$DAGGER_SESSION_PORT/query. Both the port and
+    the token are minted per `dagger run` session.
+  cloud: DAGGER_CLOUD_TOKEN environment variable for Dagger Cloud telemetry upload.
+  oidc: >-
+    Dagger Cloud additionally publishes an OIDC discovery document at
+    https://api.dagger.cloud/.well-known/openid-configuration issuing RS256
+    id_tokens (see well-known/dagger-openid-configuration.json).
+  cross_ref: authentication/dagger-authentication.yml
+idempotency:
+  coverage: none
+  header: null
+  scope: []
+  note: >-
+    There is NO Idempotency-Key mechanism, and asserting one would be false. What
+    Dagger has instead is content-addressed caching: an operation with identical
+    inputs resolves to the same content-addressed result and is not re-executed,
+    which makes most of the graph naturally replay-safe. But that is not
+    idempotency in the HTTP sense and it does not cover the operations that
+    matter most for an agent — Container.publish pushes to a remote registry and
+    Service.start binds real ports, and repeating either has real external
+    effects. Recorded as `none` deliberately: the machine verdict must not credit
+    an architectural property as a replay-protection mechanism.
+  cache_controls:
+    directive: '@cache(policy: FunctionCachePolicy, ttl: String)'
+    note: >-
+      The schema exposes a @cache directive on function definitions with a policy
+      enum (FunctionCachePolicy) and an optional TTL duration string such as "5m"
+      or "1h30s", so a module author controls caching per function. Read from
+      graphql/dagger-schema.graphqls.
+reversibility:
+  grade: documented
+  applies: partial
+  note: >-
+    Dagger's core write surface is unusual: almost every "write" is a pure
+    transformation that produces a NEW immutable value rather than mutating
+    anything. Container.withExec returns a new Container; Directory.withNewFile
+    returns a new Directory. Nothing is overwritten, so nothing needs undoing —
+    the previous value is still addressable. That covers the majority of the API
+    and is why `applies` is partial rather than the whole surface being graded.
+    The operations that DO leave the sandbox have no reversal path, and no
+    published window, which is why the grade is `documented` and not `verified`.
+  write_surfaces:
+  - operation: Container.publish
+    reverses_with: null
+    window: null
+    note: >-
+      Pushes an image to an external OCI registry. Dagger has no unpublish or
+      delete operation — reversal, if any, belongs to the registry, not to
+      Dagger. No window is stated and none is invented here.
+  - operation: Service.start / Service.stop
+    reverses_with: Service.stop
+    operation_id: null
+    window: null
+    note: >-
+      A started service can be stopped. The schema exposes both, so a reversal
+      path exists; no time window applies or is stated.
+  - operation: Directory.export / File.export / Container.export
+    reverses_with: null
+    window: null
+    note: >-
+      Writes to the caller's host filesystem, crossing the sandbox boundary
+      explicitly. There is no Dagger operation that undoes a host write.
+  - operation: environment_checkpoint (container-use MCP)
+    reverses_with: null
+    window: null
+    note: Publishes a checkpoint image to a registry; same posture as Container.publish.
+  - operation: container-use environment edits
+    reverses_with: git revert / git checkout of the container-use/<id> ref
+    window: unbounded while the ref exists
+    note: >-
+      This is the one genuinely strong reversal story in Dagger's orbit. Every
+      file write, edit and delete an agent makes inside a container-use
+      environment is committed to a git ref, and environment_diff plus
+      environment_log make the change set inspectable before a human accepts it.
+      Reversal is ordinary git, and the window is however long the ref is kept —
+      but that retention is the operator's choice, not a Dagger-published window,
+      so it does not raise the grade to `verified`.
+  cross_ref: mcp/dagger-tool-crosswalk.yml
+dry_run_mode:
+  supported: partial
+  note: >-
+    Lazy evaluation means a query can be constructed without executing: nothing
+    runs until a leaf value is requested. That is a rehearsal of the graph shape,
+    not of its effects, and there is no --dry-run flag on the mutating operations.
+pagination:
+  style: none
+  note: >-
+    No pagination exists and none is needed. One transport operation; the SDL
+    declares no Relay connection types (no PageInfo, no *Connection type).
+field_selection:
+  style: graphql-native
+  note: >-
+    Field selection IS the query language. A caller asks for exactly the fields it
+    wants, which is also what determines how much of the DAG the engine has to
+    evaluate — under-selecting is the primary performance control here.
+  pipelining: >-
+    The internals guide describes chaining many operations into one query so the
+    whole pipeline is submitted and evaluated as a single request rather than a
+    round trip per step.
+versioning:
+  cross_ref: lifecycle/dagger-lifecycle.yml
+  summary: SemVer; engine and SDKs released on one tag; no URL or header API version.
+errors:
+  cross_ref: errors/dagger-problem-types.yml
+  summary: >-
+    GraphQL errors[] envelope. HTTP 200 on a failed operation — status-only error
+    handling is wrong against this API.
+rate_limits:
+  cross_ref: rate-limits/dagger-rate-limits.yml
+  summary: >-
+    None published, and none apply to the engine, which is the caller's own
+    process on the caller's own machine. Dagger Cloud meters monthly events by
+    plan instead.
+metadata:
+  supported: true
+  note: >-
+    Container.withLabel / the Label type carry OCI image labels; EnvVariable and
+    EnvFile carry environment state. There is no generic per-request metadata bag.
+request_tracing:
+  header: null
+  mechanism: OpenTelemetry spans
+  note: >-
+    Correlation is by OTel trace, not by a request-id header. The engine emits
+    spans (github.com/dagger/otel-go) and Dagger Cloud is the view over them; the
+    pricing page meters the product in "Monthly Events".
+sandboxing:
+  note: >-
+    Load-bearing for agent use. "All Dagger Functions are fully 'sandboxed' and do
+    not have direct access to the host system"
+    (https://docs.dagger.io/features/security/). Host resources reach a function
+    only as explicit typed arguments — Directory, Socket, Service, Secret — and
+    the top-level module is "the single place where sensitive resources are
+    introduced". An agent calling Dagger cannot reach the host by default; it can
+    only reach what was handed to it.

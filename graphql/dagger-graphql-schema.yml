@@ -1,0 +1,42 @@
+generated: '2026-09-07'
+method: searched
+source: https://github.com/dagger/dagger/blob/main/docs/docs-graphql/schema.graphqls
+provider: Dagger
+providerId: dagger
+file: dagger-schema.graphqls
+description: >-
+  The Dagger Engine's GraphQL SDL, saved VERBATIM from Dagger's own repository.
+  This is the machine-readable contract of record for Dagger — the REST surface in
+  openapi/ is a single transport operation, while this file is what actually says
+  what can be asked. It is the file docs.dagger.io/reference/ is generated from.
+fetched: '2026-09-07'
+http_status: 200
+bytes: 177812
+ownership: >-
+  Served from github.com/dagger/dagger, the company's own monorepo, under its own
+  Apache-2.0 licence. The schema names Dagger's own types (Container, Directory,
+  Module, Daggerverse-facing ModuleSource, Cloud) and no other vendor's.
+contents:
+  object_types: 84
+  enums: 18
+  interfaces: 3
+  input_types: 4
+  custom_scalars: 4
+  directives: 12
+  deprecated_declarations: 15
+  experimental_declarations: 11
+endpoint:
+  url: http://127.0.0.1:{DAGGER_SESSION_PORT}/query
+  transport: GraphQL over HTTP (POST; a GET variant exists)
+  auth: HTTP Basic, DAGGER_SESSION_TOKEN as username, empty password
+introspection:
+  attempted: false
+  reason: >-
+    The live endpoint only exists inside a running `dagger run` session on the
+    prober's own machine, and the dagger CLI is not installed here (`which dagger`
+    returned nothing, 2026-09-07). No live introspection was performed and none is
+    claimed — the SDL above is the provider's own published file, which is a
+    stronger source than an introspection dump anyway.
+caveat: >-
+  This is the CORE schema. Dagger extends the schema at runtime when modules load,
+  so a given session's schema is a superset of this file.

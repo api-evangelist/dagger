@@ -1,0 +1,61 @@
+generated: '2026-09-07'
+method: derived
+source: >-
+  Derived from the responses declared in openapi/dagger-graphql-api-openapi.yml
+  and the GraphQLError schema it defines, enriched from the GraphQL-over-HTTP
+  guide at https://docs.dagger.io/0.21/getting-started/api/http/ and the Error /
+  ErrorValue types in graphql/dagger-schema.graphqls.
+provider: Dagger
+providerId: dagger
+format: graphql-errors
+format_note: >-
+  NOT RFC 9457. This API declares no application/problem+json response anywhere.
+  Errors ride the GraphQL errors[] envelope, which is the correct convention for a
+  GraphQL-over-HTTP transport, but it changes what a client must check: the
+  transport returns HTTP 200 for a failed operation, with the failure carried in
+  the body. A client that branches on the HTTP status alone will report Dagger
+  build failures as successes.
+envelope:
+  location: response body
+  field: errors
+  shape:
+    message: string — human-readable error message
+    path: array — path to the field that errored
+    locations: array of {line, column} — position in the submitted query
+  schema_ref: '#/components/schemas/GraphQLError'
+  partial_success: >-
+    A GraphQL response may carry BOTH data and errors. `data` present with a
+    non-empty `errors` array means partial success; treat it as a failure of the
+    named path, not of the whole request.
+http_statuses:
+- status: 200
+  meaning: >-
+    Transport succeeded. The operation may still have failed — inspect the
+    `errors` array before using `data`.
+  source: openapi/dagger-graphql-api-openapi.yml paths./query.post.responses.200
+- status: 401
+  meaning: Missing or invalid session token.
+  remediation: >-
+    Supply HTTP Basic credentials with the DAGGER_SESSION_TOKEN value as the
+    username and an empty password. The token is set per session by `dagger run`
+    and does not persist between sessions.
+  source: openapi/dagger-graphql-api-openapi.yml paths./query.post.responses.401
+schema_error_types:
+- name: Error
+  note: >-
+    The engine schema carries a first-class Error type with a message field and
+    typed ErrorValue attachments, so a module can raise structured, inspectable
+    errors rather than only strings. Present in graphql/dagger-schema.graphqls.
+- name: ErrorValue
+  note: Typed name/value pair attached to an Error, letting a caller read machine-readable detail off a failure.
+problem_types: []
+problem_types_note: >-
+  Empty on purpose. Deriving a problem-type catalogue requires enumerated 4xx/5xx
+  response bodies, and this contract declares exactly one 4xx (401) with no body
+  schema. Dagger publishes no error-code reference page — searched
+  https://docs.dagger.io/ (llms.txt index, 2026-09-07) with no error-reference
+  entry. An honest empty catalogue, not an omission.
+coverage:
+  operations: 2
+  operations_with_4xx: 1
+  documented_error_codes: 0

@@ -3,114 +3,52 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Dagger
 providerId: dagger
+generated: '2026-09-07'
+method: searched
+source: >-
+  Searched https://docs.dagger.io/ via its published llms.txt index (no
+  rate-limit, throttling or quota entry), https://docs.dagger.io/faq/ (no
+  occurrence of "rate limit", "quota", "throttl" or "429"), and
+  https://dagger.io/pricing (which meters plans but publishes no request limits).
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Build Automation
-  - BuildKit
-  - CI/CD
-  - Containers
-  - DAG
-  - Daggerverse
-  - DevOps
-  - GraphQL
-  - Modules
-  - OCI
-  - Open Source
-  - Pipelines
-  - Programmable Pipelines
-  - SDKs
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Dagger API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+modified: '2026-09-07'
+supersedes: >-
+  This file previously held a bulk-sweep scaffold dated 2026-05-04 asserting
+  X-RateLimit-* response headers, a 429 on exhaustion, and per-tier limits of
+  10 rpm / 1,000 requests a month. NONE of that was published by Dagger — it was
+  scaffold default text. Removed 2026-09-07 and replaced with the honest result.
+limit_count: 0
+description: >-
+  Dagger publishes no rate limits, and for the engine that is structurally
+  correct rather than an omission. The Dagger API is not a hosted multi-tenant
+  service: it is a loopback endpoint at http://127.0.0.1:$DAGGER_SESSION_PORT/query
+  served by an engine running on the caller's own machine for the life of one
+  session. There is no shared capacity to protect and no other tenant to protect
+  it from; the practical limits are the host's CPU, memory, disk and the engine's
+  container concurrency.
+limits: []
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
-limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Dagger Engine GraphQL API
-      - Dagger SDKs
-      - Daggerverse Module Index
-      - Dagger Cloud
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Dagger Engine GraphQL API
-      - Dagger SDKs
-      - Daggerverse Module Index
-      - Dagger Cloud
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Dagger Engine GraphQL API
-      - Dagger SDKs
-      - Daggerverse Module Index
-      - Dagger Cloud
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Dagger Engine GraphQL API
-      - Dagger SDKs
-      - Daggerverse Module Index
-      - Dagger Cloud
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Dagger Engine GraphQL API
-      - Dagger SDKs
-      - Daggerverse Module Index
-      - Dagger Cloud
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+  limit: null
+  remaining: null
+  reset: null
+  retry_after: null
+  policy: null
+  note: >-
+    No rate-limit response headers are documented, and none were observed. The
+    transport returns HTTP 200 for failed operations (GraphQL errors[] envelope),
+    so there is no exhaustion status code to record either.
+exhaustion_status: null
+metered_surface:
+  product: Dagger Cloud
+  unit: Monthly Events
+  note: >-
+    The one place Dagger does meter is the hosted control plane, and it meters
+    ingested telemetry volume rather than API calls: 1,000,000 monthly events on
+    Individual, 10,000,000 on Team, "Contact us" on Enterprise
+    (https://dagger.io/pricing). What happens on exceeding that is not published —
+    no overage price, no throttle behaviour, no header. See
+    plans/dagger-plans-pricing.yml.
+finding: >-
+  An agent integrating against Dagger Cloud has no runtime signal for how close it
+  is to its event quota. The number exists on the pricing page; nothing surfaces
+  it in a response.

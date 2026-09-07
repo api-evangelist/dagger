@@ -1,0 +1,1 @@
+{"id_token_signing_alg_values_supported":["RS256"],"issuer":"https://api.dagger.cloud","jwks_uri":"https://api.dagger.cloud/jwks","response_types_supported":["id_token"],"subject_types_supported":["public"]}

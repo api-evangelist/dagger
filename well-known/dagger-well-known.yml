@@ -1,0 +1,144 @@
+generated: '2026-09-07'
+method: probed
+source: >-
+  Anonymous HTTPS probes of /.well-known/{security.txt,openid-configuration,
+  oauth-authorization-server,api-catalog,ai-plugin.json} on every host this record
+  knows: the registrable domain and www, the docs host, the Daggerverse host, the
+  Dagger Cloud web and API hosts, the container-use host, and the status host.
+provider: Dagger
+providerId: dagger
+note: >-
+  ONE real document was found: api.dagger.cloud serves a genuine OIDC discovery
+  document (application/json, issuer https://api.dagger.cloud, RS256 id_token,
+  jwks_uri https://api.dagger.cloud/jwks — the JWKS itself returns 200 with one
+  RSA key). Everything else missed. Two hosts return HTTP 200 with an HTML SPA
+  shell for EVERY /.well-known/* path — dagger.cloud (the Dagger Cloud web app,
+  which also answers 200 for /openapi.json) and status.dagger.io (a BetterStack
+  status page). Those 200s are catch-all shells, not documents, and are recorded
+  as misses. No security.txt is published on any Dagger host.
+hosts:
+- host: dagger.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: www.dagger.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: docs.dagger.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: daggerverse.dev
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: api.dagger.cloud
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: dagger-openid-configuration.json
+    content_type: application/json
+    note: >-
+      Real OIDC discovery document. issuer https://api.dagger.cloud,
+      jwks_uri https://api.dagger.cloud/jwks, response_types_supported
+      [id_token], id_token_signing_alg_values_supported [RS256],
+      subject_types_supported [public]. Saved verbatim.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: dagger.cloud
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: >-
+      MISS, not a hit. HTTP 200 with text/html — the Dagger Cloud SPA catch-all
+      returns the same HTML shell for every path, including /openapi.json.
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: MISS — same SPA catch-all HTML shell.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: MISS — same SPA catch-all HTML shell.
+  - path: /.well-known/api-catalog
+    status: 200
+    note: MISS — same SPA catch-all HTML shell.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: MISS — same SPA catch-all HTML shell.
+- host: container-use.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: status.dagger.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: MISS — BetterStack status page returns its HTML shell for every path.
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: MISS — BetterStack status page HTML shell.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: MISS — BetterStack status page HTML shell.
+  - path: /.well-known/api-catalog
+    status: 200
+    note: MISS — BetterStack status page HTML shell.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: MISS — BetterStack status page HTML shell.
+summary:
+  hosts_probed: 8
+  paths_probed: 41
+  real_documents: 1
+  security_txt: false
+  soft_200_shells: 10

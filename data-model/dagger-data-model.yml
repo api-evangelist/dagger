@@ -1,0 +1,364 @@
+generated: '2026-09-07'
+method: derived
+source: >-
+  Derived by parsing the first-party Dagger engine GraphQL SDL saved at
+  graphql/dagger-schema.graphqls (upstream
+  https://github.com/dagger/dagger/blob/main/docs/docs-graphql/schema.graphqls).
+  Object-to-object field links were read from the SDL directly; nothing here is
+  inferred from prose.
+provider: Dagger
+providerId: dagger
+model_kind: graphql-object-graph
+shape_note: >-
+  This is not a record model. Dagger's types are IMMUTABLE VALUES in a build
+  graph, not rows in a store — there is no create/read/update/delete and no
+  identity that survives a mutation. Every `with*` field is a pure transformation
+  returning a NEW value of the same type, so relationships below mean "this type
+  can produce or expose that type", not "this record owns that record". Reading
+  it as a CRUD ERD produces wrong integrations, which is why the relationship
+  verbs used are produces / exposes / lists rather than has_one / has_many.
+identifiers:
+  scheme: content-addressed opaque IDs
+  note: >-
+    Since v0.21.1 objects are exposed through a standard Node interface and a
+    unified ID scalar (CHANGELOG.md, PR #12041). IDs are content-addressed
+    handles, not durable primary keys, and each type has a matching
+    Query.load<Type>FromID resolver. Identical inputs yield the same ID, which is
+    what drives the cache.
+  id_prefixes: none
+  id_prefix_note: >-
+    Dagger publishes no per-object id-prefix convention (no obj_/cus_ style
+    scheme). Checked the object reference and the SDL; there is none to record.
+totals:
+  object_types: 84
+  enums: 18
+  interfaces: 3
+  input_types: 4
+  custom_scalars: 4
+  directives: 12
+entities:
+- name: Query
+  role: root
+  fields: 56
+  description: The schema root. Every pipeline starts from one of its constructors.
+  relationships:
+  - produces: Container
+    via: container
+  - produces: Directory
+    via: directory
+  - produces: File
+    via: file
+  - produces: GitRepository
+    via: git
+  - produces: Cloud
+    via: cloud
+  - produces: Engine
+    via: engine
+  - produces: Changeset
+    via: changeset
+  - produces: Workspace
+    via: currentWorkspace
+  - produces: CurrentModule
+    via: currentModule
+  - produces: FunctionCall
+    via: currentFunctionCall
+  - lists: TypeDef
+    via: currentTypeDefs
+  - produces: Error
+    via: error
+- name: Container
+  role: core
+  fields: 152
+  description: An OCI container value. The largest type in the schema and the centre of most pipelines.
+  relationships:
+  - produces: Service
+    via: asService
+  - produces: Directory
+    via: directory
+  - produces: Directory
+    via: rootfs
+  - produces: File
+    via: file
+  - produces: File
+    via: layer
+  - produces: File
+    via: manifest
+  - lists: EnvVariable
+    via: envVariables
+  - lists: Port
+    via: exposedPorts
+  - lists: Label
+    via: labels
+  - produces: HealthcheckConfig
+    via: dockerHealthcheck
+  - produces: Stat
+    via: stat
+- name: Directory
+  role: core
+  fields: 58
+  relationships:
+  - produces: File
+    via: file
+  - produces: GitRepository
+    via: asGit
+  - produces: Module
+    via: asModule
+  - produces: ModuleSource
+    via: asModuleSource
+  - produces: Workspace
+    via: asWorkspace
+  - lists: SearchResult
+    via: search
+  - produces: Stat
+    via: stat
+- name: File
+  role: core
+  fields: 16
+  relationships:
+  - produces: GitBundle
+    via: asGitBundle
+  - produces: JSONValue
+    via: asJSON
+  - lists: SearchResult
+    via: search
+  - produces: Stat
+    via: stat
+- name: Secret
+  role: core
+  fields: 4
+  description: >-
+    A value that crosses the sandbox boundary explicitly. No object links by
+    design — a Secret produces nothing, it is only consumed.
+  relationships: []
+- name: CacheVolume
+  role: core
+  fields: 1
+  description: A persistent named cache mount. Deliberately opaque — one field, no links.
+  relationships: []
+- name: Service
+  role: core
+  fields: 10
+  relationships:
+  - lists: Port
+    via: ports
+- name: Host
+  role: boundary
+  fields: 10
+  description: >-
+    The one type that reaches the caller's machine. Every host resource enters
+    the graph through here and only as an explicit argument.
+  relationships:
+  - produces: Directory
+    via: directory
+  - produces: File
+    via: file
+  - produces: Container
+    via: containerImage
+  - produces: Service
+    via: service
+  - produces: Socket
+    via: unixSocket
+- name: Module
+  role: extension
+  fields: 21
+  description: A loaded Dagger Module — the mechanism by which the schema itself grows at runtime.
+  relationships:
+  - produces: ModuleSource
+    via: source
+  - produces: Container
+    via: runtime
+  - produces: SDKConfig
+    via: sdk
+  - produces: Check
+    via: check
+  - produces: CheckGroup
+    via: checks
+  - produces: Generator
+    via: generator
+  - produces: GeneratorGroup
+    via: generators
+  - lists: TypeDef
+    via: objects
+  - lists: TypeDef
+    via: interfaces
+  - lists: TypeDef
+    via: enums
+  - produces: Directory
+    via: generatedContextDirectory
+  - produces: File
+    via: introspectionSchemaJSON
+  - produces: EnvFile
+    via: userDefaults
+  - produces: UpGroup
+    via: services
+- name: ModuleSource
+  role: extension
+  fields: 55
+  relationships:
+  - produces: Module
+    via: asModule
+  - produces: Directory
+    via: contextDirectory
+  - produces: Directory
+    via: directory
+  - produces: Changeset
+    via: generatedContextChangeset
+  - produces: SDKConfig
+    via: sdk
+  - lists: ModuleConfigClient
+    via: configClients
+  - produces: EnvFile
+    via: userDefaults
+  - produces: File
+    via: introspectionSchemaJSON
+- name: Workspace
+  role: extension
+  fields: 51
+  description: >-
+    The Modules v2 surface — a typed API onto the caller's project, announced as
+    in development at https://dagger.io/changelog.
+  relationships:
+  - produces: AgentGroup
+    via: agents
+  - produces: CheckGroup
+    via: checks
+  - produces: GeneratorGroup
+    via: generators
+  - produces: WorkspaceGit
+    via: git
+  - produces: WorkspaceMigration
+    via: migrate
+  - lists: WorkspaceModule
+    via: modules
+  - lists: WorkspaceSDK
+    via: sdks
+  - produces: ModuleSource
+    via: moduleSource
+  - produces: Directory
+    via: directory
+  - produces: File
+    via: file
+  - lists: SearchResult
+    via: search
+  - produces: UpGroup
+    via: services
+- name: GitRepository
+  role: source
+  fields: 16
+  relationships:
+  - produces: GitRef
+    via: branch
+  - produces: GitRef
+    via: tag
+  - produces: GitRef
+    via: head
+  - produces: GitRef
+    via: latest
+  - produces: GitRef
+    via: ref
+  - produces: GitCommit
+    via: commit
+  - produces: Changeset
+    via: uncommitted
+  - produces: Workspace
+    via: asWorkspace
+- name: GitRef
+  role: source
+  fields: 12
+  relationships:
+  - produces: Directory
+    via: tree
+  - produces: GitCommit
+    via: targetCommit
+  - produces: Workspace
+    via: asWorkspace
+- name: Changeset
+  role: diff
+  fields: 16
+  relationships:
+  - produces: Directory
+    via: before
+  - produces: Directory
+    via: after
+  - produces: Directory
+    via: layer
+  - produces: File
+    via: asPatch
+  - lists: DiffStat
+    via: diffStats
+- name: LLM
+  role: agent
+  fields: 36
+  description: >-
+    Dagger's own LLM type. This is where Dagger acts as an MCP CLIENT —
+    withMCPServer attaches an external MCP server as a Service.
+  relationships:
+  - lists: LLMMessage
+    via: messages
+  - lists: LLMSkill
+    via: skills
+  - produces: LLMTokenUsage
+    via: tokenUsage
+  - produces: Workspace
+    via: workspace
+- name: Agent
+  role: agent
+  fields: 5
+  relationships:
+  - produces: Module
+    via: originalModule
+- name: Check
+  role: workflow
+  fields: 11
+  relationships:
+  - produces: Module
+    via: originalModule
+  - produces: Error
+    via: error
+- name: TypeDef
+  role: reflection
+  fields: 30
+  description: The schema describing itself — how modules declare new types to the engine.
+  relationships:
+  - produces: ObjectTypeDef
+    via: asObject
+  - produces: InterfaceTypeDef
+    via: asInterface
+  - produces: EnumTypeDef
+    via: asEnum
+  - produces: InputTypeDef
+    via: asInput
+  - produces: ListTypeDef
+    via: asList
+  - produces: ScalarTypeDef
+    via: asScalar
+- name: Function
+  role: reflection
+  fields: 25
+  relationships:
+  - lists: FunctionArg
+    via: args
+  - produces: TypeDef
+    via: returnType
+  - produces: SourceMap
+    via: sourceMap
+- name: Engine
+  role: infrastructure
+  fields: 4
+  relationships:
+  - produces: EngineCache
+    via: localCache
+- name: Cloud
+  role: infrastructure
+  fields: 2
+  description: The hook into Dagger Cloud. Two fields — the hosted product is not modelled in the engine schema.
+  relationships: []
+entity_count_documented: 21
+entity_count_total: 84
+coverage_note: >-
+  The 21 entities above are the load-bearing ones. The remaining 63 object types
+  are supporting shapes (EngineCacheEntry, FunctionCallArgValue, SearchSubmatch,
+  WorkspaceMigrationStep, the *Group wrappers, the *TypeDef leaves) that hang off
+  these and add no new relationship structure.
+render: null
+render_note: No subway/ diagram exists in this repo; nothing to reference.

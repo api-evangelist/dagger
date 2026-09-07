@@ -1,0 +1,182 @@
+generated: '2026-09-07'
+method: derived
+source: >-
+  Derived by binding the container-use MCP tools recorded in mcp/dagger-mcp.yml
+  (read from dagger/container-use mcpserver/tools.go) to the Dagger engine GraphQL
+  schema saved at graphql/dagger-schema.graphqls and to the single REST transport
+  operation in openapi/dagger-graphql-api-openapi.yml.
+provider: Dagger
+providerId: dagger
+surfaces:
+  openapi:
+    path: openapi/dagger-graphql-api-openapi.yml
+    operations: 2
+    gated: false
+    note: >-
+      Not a resource API. The whole REST surface is one GraphQL transport endpoint
+      (POST /query, plus a GET variant). operationIds executeGraphQLQuery and
+      executeGraphQLQueryViaGet are added by overlays/dagger-graphql-api-overlay.yaml;
+      the source spec ships none.
+  graphql:
+    endpoint: http://127.0.0.1:{DAGGER_SESSION_PORT}/query
+    sdl: graphql/dagger-schema.graphqls
+    gated: true
+    note: >-
+      Not gated by a vendor login — gated by locality. The endpoint only exists
+      inside a running `dagger run` session on the caller's own machine and is
+      protected by HTTP Basic with DAGGER_SESSION_TOKEN. The SDL is published, so
+      the schema is fully readable without a session.
+  mcp:
+    url: null
+    mode: local-stdio
+    install: container-use stdio
+    gated: false
+    note: No remote MCP URL exists; the server is a local binary.
+binding_model: >-
+  container-use does not proxy GraphQL operations one-for-one. Each MCP tool is a
+  composite that drives the Dagger engine over the SDK (Go), usually touching
+  several GraphQL fields, and additionally performs git work (branch, commit, push
+  to a container-use/<id> ref) that has no GraphQL counterpart at all. Every row
+  below therefore binds a tool to the GraphQL fields it exercises, and to the one
+  REST transport operation those fields travel over. Confidence is set by how
+  directly the tool maps onto named schema fields, and no row claims a
+  field-for-tool identity that the source does not show.
+crosswalk:
+- tool: environment_create
+  category: environment
+  rest: [executeGraphQLQuery]
+  graphql: [Query.container, Container.from, Container.withExec, Container.withWorkdir, Query.directory, Query.git]
+  binding: composite
+  confidence: medium
+  note: >-
+    Builds a container from the configured base image, runs the configured setup
+    commands, and creates a git branch. The git branch half has no GraphQL field.
+- tool: environment_open
+  category: environment
+  rest: [executeGraphQLQuery]
+  graphql: [Query.loadContainerFromID, Query.container]
+  binding: composite
+  confidence: low
+  note: Reopens state recorded in git; the schema fields it touches on reopen are not enumerated in the source.
+- tool: environment_list
+  category: environment
+  rest: []
+  graphql: []
+  binding: none
+  confidence: high
+  note: >-
+    Reads the local container-use git refs. No engine call, no REST operation.
+    Listed for completeness, not as a bound row.
+- tool: environment_config
+  category: environment
+  rest: [executeGraphQLQuery]
+  graphql: [Container.from, Container.withExec, Container.withEnvVariable]
+  binding: composite
+  confidence: medium
+- tool: environment_update_metadata
+  category: environment
+  rest: []
+  graphql: []
+  binding: none
+  confidence: high
+  note: Metadata only; written to the environment's git state.
+- tool: environment_run_cmd
+  category: execution
+  rest: [executeGraphQLQuery]
+  graphql: [Container.withExec, Container.stdout, Container.stderr, Container.asService, Container.withExposedPort, Service.start]
+  binding: composite
+  confidence: high
+  note: >-
+    The background:true + ports path maps onto Container.asService /
+    withExposedPort / Service.start; the foreground path onto withExec + stdout.
+- tool: environment_file_read
+  category: filesystem
+  rest: [executeGraphQLQuery]
+  graphql: [Container.file, File.contents]
+  binding: composite
+  confidence: high
+- tool: environment_file_list
+  category: filesystem
+  rest: [executeGraphQLQuery]
+  graphql: [Container.directory, Directory.entries]
+  binding: composite
+  confidence: high
+- tool: environment_file_write
+  category: filesystem
+  rest: [executeGraphQLQuery]
+  graphql: [Container.withNewFile, Directory.withNewFile]
+  binding: composite
+  confidence: high
+- tool: environment_file_edit
+  category: filesystem
+  rest: [executeGraphQLQuery]
+  graphql: [Container.file, File.contents, Container.withNewFile]
+  binding: composite
+  confidence: medium
+  note: Find-and-replace is read-modify-write in the tool, not a schema field.
+- tool: environment_file_delete
+  category: filesystem
+  rest: [executeGraphQLQuery]
+  graphql: [Directory.withoutFile, Container.withDirectory]
+  binding: composite
+  confidence: medium
+- tool: environment_add_service
+  category: services
+  rest: [executeGraphQLQuery]
+  graphql: [Query.container, Container.withExposedPort, Container.asService, Service.start, Service.endpoint]
+  binding: composite
+  confidence: high
+- tool: environment_checkpoint
+  category: publishing
+  rest: [executeGraphQLQuery]
+  graphql: [Container.publish]
+  binding: direct
+  confidence: high
+  note: >-
+    The closest thing to a one-to-one row in this set: checkpoint takes a
+    destination image address and publishes the container to it.
+- tool: environment_log
+  category: history
+  rest: []
+  graphql: []
+  binding: none
+  confidence: high
+  note: Reads the environment's git history. Purely local; no engine call.
+- tool: environment_diff
+  category: history
+  rest: []
+  graphql: []
+  binding: none
+  confidence: high
+  note: Reads the environment's git history. Purely local; no engine call.
+mcp_only:
+- tool: environment_list
+  reason: Reads local container-use git refs; there is no engine or REST counterpart.
+- tool: environment_update_metadata
+  reason: Writes environment metadata into local git state only.
+- tool: environment_log
+  reason: Git history read; no engine operation exists for it.
+- tool: environment_diff
+  reason: Git diff read; no engine operation exists for it.
+rest_only:
+- operation: executeGraphQLQueryViaGet
+  reason: >-
+    The GET transport variant is not used by container-use, which drives the
+    engine through the Go SDK over POST.
+graphql_only_note: >-
+  The overwhelming majority of the schema is not reachable through container-use.
+  The SDL carries 84 object types (Container, Directory, File, Secret,
+  CacheVolume, Git*, LLM, Agent, Check, Module, Workspace, Engine, Cloud and more)
+  and container-use exposes 15 tools that touch a narrow slice of Container,
+  Directory, File and Service. Anything else — modules, checks, agents, the LLM
+  type, engine cache introspection — is reachable only by writing a Dagger module
+  or calling the engine directly.
+coverage:
+  mcp_tools: 15
+  tools_bound_to_graphql: 11
+  tools_bound_to_rest: 11
+  mcp_only: 4
+  rest_operations: 2
+  rest_operations_unbound: 1
+  graphql_object_types_total: 84
+  graphql_object_types_touched: 6

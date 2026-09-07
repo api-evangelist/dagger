@@ -1,0 +1,139 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  https://github.com/dagger/dagger/blob/main/CHANGELOG.md,
+  https://github.com/dagger/dagger/releases (GitHub Releases API, read
+  2026-09-07), https://dagger.io/changelog, https://status.dagger.io, the
+  @deprecated directives read from graphql/dagger-schema.graphqls, and
+  https://docs.dagger.io/faq/
+provider: Dagger
+providerId: dagger
+versioning:
+  scheme: semver
+  scheme_source: >-
+    "adheres to Semantic Versioning (https://semver.org/spec/v2.0.0.html)" —
+    CHANGELOG.md header.
+  current_version: v0.21.9
+  released: '2026-08-26'
+  api_version_in_path: false
+  api_version_header: false
+  note: >-
+    There is no URL or header API version. The engine and the client are versioned
+    together: an SDK release is cut at the same tag as the engine
+    (sdk/go/v0.21.9, sdk/python/v0.21.9, sdk/typescript/v0.21.9,
+    sdk/php/v0.21.9, sdk/rust/v0.21.9, sdk/elixir/v0.21.9,
+    helm/chart/v0.21.9 all published within four minutes of v0.21.9 on
+    2026-08-26). Compatibility is a version-pinning problem, not a
+    content-negotiation one.
+  release_cadence: >-
+    Roughly monthly minors with patch releases in between. Observed from the
+    Releases API: v0.21.9 2026-08-26, v0.21.8 2026-07-29, v0.21.7 2026-06-17,
+    v0.21.6 2026-06-10.
+  parallel_train:
+    versions: 1.0.0-beta.N
+    note: >-
+      The Rust, Elixir, PHP and Java SDKs also publish on a 1.0.0-beta.N line
+      (beta.11 on 2026-08-27, pom on main at beta.12) cut from the same commits —
+      a 1.0 is in flight. See packages/dagger-packages.yml.
+deprecation:
+  policy_published: false
+  policy_note: >-
+    No written deprecation or sunset policy could be found. Searched
+    https://docs.dagger.io/ (via its llms.txt index), the FAQ at
+    https://docs.dagger.io/faq/, and the repository — there is no SECURITY.md,
+    DEPRECATION or support-policy document (SECURITY.md, .github/SECURITY.md and
+    docs/SECURITY.md all return 404 on raw.githubusercontent.com, probed
+    2026-09-07). This is a real gap: Dagger deprecates schema fields in practice
+    but publishes no stated window for removing them.
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  mechanism: >-
+    Deprecation is declared IN THE CONTRACT, using the GraphQL @deprecated
+    directive with a reason string. That is machine-readable and better than a
+    prose page — a client generator sees it — but it carries no date.
+  deprecated_count: 15
+  deprecated_fields:
+  - type: EnumTypeDef
+    field: values
+    reason: use members instead
+  - type: File
+    field: expand
+    reason: Variable expansion is now enabled by default
+  - type: GitRef
+    field: commit
+    reason: (reason string escaped in SDL)
+  - type: GitRef
+    field: ref
+    reason: (reason string escaped in SDL)
+  - type: ModuleSource
+    field: blueprint
+    reason: >-
+      Legacy dagger.json field. Generic module loading no longer honors it; use
+      workspace modules in dagger.toml instead.
+  - type: ModuleSource
+    field: toolchains
+    reason: >-
+      Legacy dagger.json field. Generic module loading no longer honors it; use
+      workspace modules in dagger.toml instead.
+  - type: ModuleSource
+    field: withUpdateBlueprint
+    reason: >-
+      Legacy dagger.json field. Generic module loading no longer honors it; use
+      workspace modules in dagger.toml instead.
+  - type: ModuleSource
+    field: withoutBlueprint
+    reason: >-
+      Legacy dagger.json field. Generic module loading no longer honors it; use
+      workspace modules in dagger.toml instead.
+  - type: Query
+    field: expand
+    reason: Variable expansion is now enabled by default
+  - type: Query
+    field: keepGitDir
+    reason: Set to true to keep .git directory.
+  - type: TypeDef
+    field: (enum member helper)
+    reason: Use `withEnumMember` instead
+  deprecated_fields_note: >-
+    Eleven distinct declarations are named above; the SDL carries 15 @deprecated
+    occurrences in total, four of which sit on arguments rather than named fields
+    and are attributed to their parent type (ModuleSource, TypeDef) without a
+    field name rather than being guessed.
+  experimental_count: 11
+  experimental_note: >-
+    The schema also carries an @experimental directive with an explanatory reason,
+    used 11 times. Dagger marks instability in the contract in both directions —
+    what is on the way out and what is not yet settled — which is unusual and
+    worth crediting.
+status_page:
+  published: true
+  url: https://status.dagger.io
+  vendor: BetterStack
+  http_status: 200
+  machine_readable: false
+  note: >-
+    A real, live status page for Dagger Cloud. It is not an Atlassian Statuspage,
+    so there is no /api/v2/status.json — that path returns the page's HTML shell
+    (probed 2026-09-07). An agent cannot poll this surface as data.
+changelog:
+  published: true
+  urls:
+  - https://dagger.io/changelog
+  - https://github.com/dagger/dagger/blob/main/CHANGELOG.md
+  dated: true
+  generated_by: Changie
+sla:
+  published: false
+  note: >-
+    No SLA is published. https://dagger.io/pricing offers "24/7 premium support"
+    on the Enterprise tier but states no availability or response-time commitment,
+    and the terms of service at https://dagger.io/legal_pages/terms-of-service
+    are the only other contractual document on the site.
+support:
+  community: https://discord.gg/dagger-io
+  issues: https://github.com/dagger/dagger/issues
+  tiers:
+    individual: Community support
+    team: Email support
+    enterprise: 24/7 premium support

@@ -47,7 +47,7 @@ type: Index
 access: Open Source
 position: Consuming
 created: '2026-03-26'
-modified: '2026-04-28'
+modified: '2026-09-07'
 specificationVersion: '0.23'
 tags:
 - Build Automation
@@ -90,6 +90,13 @@ apis:
     endpoint.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.dagger.io/api/
+  baseURL: http://127.0.0.1:{DAGGER_SESSION_PORT}
+  baseURLNote: >-
+    Templated and correct. Dagger publishes no hosted API host; the engine serves
+    its GraphQL API on loopback at http://127.0.0.1:$DAGGER_SESSION_PORT/query for
+    the life of one `dagger run` session, authenticated with DAGGER_SESSION_TOKEN
+    over HTTP Basic. Verified 2026-09-07 against
+    https://docs.dagger.io/0.21/getting-started/api/http/
   tags:
   - GraphQL
   - Introspection
@@ -104,8 +111,12 @@ apis:
     url: https://docs.dagger.io/api/internals/
   - type: Blog
     url: https://dagger.io/blog/graphql
-  - url: graphql/dagger-graphql.md
-    type: GraphQL
+  - type: GraphQL
+    url: graphql/dagger-schema.graphqls
+  - type: GraphQLSchema
+    url: graphql/dagger-graphql-schema.yml
+  - type: GettingStarted
+    url: https://docs.dagger.io/0.21/getting-started/api/http/
 - aid: dagger:sdks
   name: Dagger SDKs
   description: >-
@@ -113,7 +124,11 @@ apis:
     clients against the Dagger Engine's GraphQL schema, allowing pipelines to be written as regular code
     in the developer's preferred language.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.dagger.io/sdk/
+  humanURL: https://docs.dagger.io/api/clients
+  baseURL: http://127.0.0.1:{DAGGER_SESSION_PORT}
+  baseURLNote: >-
+    Every Dagger SDK is a generated client for the same per-session loopback
+    endpoint the engine serves; there is no separate SDK host.
   tags:
   - .NET
   - Elixir
@@ -136,9 +151,13 @@ apis:
   - TypeScript
   properties:
   - type: Documentation
-    url: https://docs.dagger.io/sdk/
+    url: https://docs.dagger.io/api/clients
   - type: GitHubRepository
     url: https://github.com/dagger/dagger
+  - type: Packages
+    url: packages/dagger-packages.yml
+  - type: SDKs
+    url: packages/dagger-packages.yml
 - aid: dagger:daggerverse
   name: Daggerverse Module Index
   description: >-
@@ -146,6 +165,14 @@ apis:
     reusable Modules contributed by the Dagger community.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://daggerverse.dev/
+  baseURL: https://daggerverse.dev/
+  baseURLNote: >-
+    Daggerverse publishes no machine-readable API. Probed 2026-09-07:
+    /api, /api/modules, /api/search and /graphql all return 404, and
+    api.daggerverse.dev does not resolve. The module index is consumed through
+    `dagger search` / `dagger install` against git refs, not over HTTP by third
+    parties, so the site root is recorded as the only host — a human surface,
+    not an API base.
   tags:
   - Daggerverse
   - Modules
@@ -162,6 +189,14 @@ apis:
     and team collaboration. It integrates with the local Dagger Engine for seamless trace uploads.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://dagger.io/cloud
+  baseURL: https://api.dagger.cloud
+  baseURLNote: >-
+    Real, first-party and reachable, but undocumented. api.dagger.cloud answers
+    from a Go HTTP server (plain-text "404 page not found" on unknown paths, not
+    an SPA shell) and serves two real documents anonymously:
+    /.well-known/openid-configuration (issuer https://api.dagger.cloud) and
+    /jwks. No API reference for it is published — Dagger Cloud is documented as a
+    product, not as an API. Probed 2026-09-07.
   tags:
   - Cloud
   - Observability
@@ -171,16 +206,22 @@ apis:
   - type: Website
     url: https://dagger.io/cloud
   - type: Signup
-    url: https://dagger.cloud/signup
+    url: https://dagger.cloud
 - aid: dagger:dagger-graphql-api
   name: Dagger GraphQL API
   description: The GraphQL API from Dagger — 1 operation(s) for graphql.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.dagger.io/api/
+  baseURL: http://127.0.0.1:{DAGGER_SESSION_PORT}
   tags:
   - GraphQL
   properties:
   - type: OpenAPI
     url: openapi/dagger-graphql-api-openapi.yml
+  - type: Overlay
+    url: overlays/dagger-graphql-api-overlay.yaml
+  - type: ErrorCatalog
+    url: errors/dagger-problem-types.yml
 common:
 - type: IssueTracker
   url: https://github.com/dagger/dagger/issues
@@ -217,8 +258,12 @@ common:
 - type: Pricing
   url: https://dagger.io/pricing
 - type: Signup
-  url: https://dagger.cloud/signup
+  url: https://dagger.cloud
+- type: SignUp
+  url: https://dagger.cloud
 - type: Discord
+  url: https://discord.gg/dagger-io
+- type: Community
   url: https://discord.gg/dagger-io
 - type: YouTube
   url: https://www.youtube.com/@dagger-io
@@ -234,6 +279,48 @@ common:
   url: https://dagger.io/partners/
 - type: LlmsText
   url: https://docs.dagger.io/llms.txt
+- type: LLMsTxt
+  url: llms/dagger-llms.txt
+- type: Packages
+  url: packages/dagger-packages.yml
+- type: SDKs
+  url: packages/dagger-packages.yml
+- type: WellKnown
+  url: well-known/dagger-well-known.yml
+- type: MCPServer
+  url: mcp/dagger-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/dagger-tool-crosswalk.yml
+- type: Conformance
+  url: conformance/dagger-conformance.yml
+- type: ErrorCatalog
+  url: errors/dagger-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/dagger-lifecycle.yml
+- type: StatusPage
+  url: https://status.dagger.io
+- type: Conventions
+  url: conventions/dagger-conventions.yml
+- type: ChangeLog
+  url: changelog/dagger-changelog.yml
+- type: ChangeLog
+  url: https://dagger.io/changelog
+- type: CLI
+  url: cli/dagger-cli.yml
+- type: DataModel
+  url: data-model/dagger-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Plans
+  url: plans/dagger-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/dagger-rate-limits.yml
+- type: TermsOfService
+  url: https://dagger.io/legal_pages/terms-of-service
+- type: PrivacyPolicy
+  url: https://dagger.io/legal_pages/privacy-policy
+- type: FAQ
+  url: https://docs.dagger.io/faq/
 integrations:
 - name: Dagger
 - name: GitHub stars
@@ -252,3 +339,8 @@ integrations:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-07'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v3
