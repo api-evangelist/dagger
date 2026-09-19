@@ -207,6 +207,8 @@ apis:
   humanURL: https://docs.dagger.io/api/
   baseURL: http://127.0.0.1:{DAGGER_SESSION_PORT}
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
