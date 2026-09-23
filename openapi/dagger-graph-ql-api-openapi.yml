@@ -1,38 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Dagger HTTP GraphQL API
+  title: Dagger HTTP Graph QL API
   version: v0.x
   description: 'Dagger exposes its build/run/test engine as a GraphQL API served by
 
-    a per-session local endpoint. The HTTP transport is intended to be
-
-    called from language SDKs or directly via `dagger query`, but any
-
-    GraphQL/HTTP client may use it.
-
-
-    For every Dagger session, the engine creates a unique local endpoint
-
-    on 127.0.0.1 at the port supplied in the `DAGGER_SESSION_PORT`
-
-    environment variable, served at the path `/query`. Requests must
-
-    authenticate via HTTP Basic using the session token from
-
-    `DAGGER_SESSION_TOKEN` as the username (with an empty password),
-
-    e.g. `Authorization: Basic <base64(DAGGER_SESSION_TOKEN:)>`.
-
-
-    The GraphQL schema is dynamic: the core schema exposes Container,
-
-    Directory, File, Secret, CacheVolume, Git, Host, Http, and many
-
-    `loadXFromID` lookups, and additional fields are added when Dagger
-
-    modules are loaded.
-
-    '
+    a per-session local endpoint.'
   contact:
     name: Dagger
     url: https://docs.dagger.io
@@ -52,12 +24,12 @@ servers:
 security:
 - SessionTokenBasic: []
 tags:
-- name: GraphQL
+- name: Graph QL
 paths:
   /query:
     post:
       tags:
-      - GraphQL
+      - Graph QL
       summary: Execute a GraphQL query or mutation against the Dagger engine
       description: 'Standard GraphQL-over-HTTP POST. Sends a JSON body with `query`,
 
@@ -69,9 +41,7 @@ paths:
 
         and many `loadXFromID` resolvers, plus any fields contributed by
 
-        loaded Dagger modules.
-
-        '
+        loaded Dagger modules.'
       requestBody:
         required: true
         content:
@@ -98,9 +68,11 @@ paths:
                 $ref: '#/components/schemas/GraphQLResponse'
         '401':
           description: Missing or invalid session token
+      operationId: postQuery
+      x-operation-id-source: derived
     get:
       tags:
-      - GraphQL
+      - Graph QL
       summary: Execute a GraphQL query via GET
       description: GET variant of the GraphQL endpoint (query-string encoded).
       parameters:
@@ -125,6 +97,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GraphQLResponse'
+      operationId: getQuery
+      x-operation-id-source: derived
 components:
   schemas:
     GraphQLResponse:

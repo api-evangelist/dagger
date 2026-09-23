@@ -1,17 +1,23 @@
 {
   "provider": "dagger",
   "sources": [
-    "dagger-graphql-api-openapi.yml"
+    "_original/dagger-openapi.yml"
   ],
   "outputs": [
     "dagger-graphql-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "dagger-graphql-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "dagger-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: dagger-graph-ql-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 5 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "dagger-graph-ql-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
