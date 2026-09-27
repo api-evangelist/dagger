@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Dagger HTTP Graph QL API
+  title: Dagger HTTP GraphQL API
   version: v0.x
   description: 'Dagger exposes its build/run/test engine as a GraphQL API served by
 
@@ -101,20 +101,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GraphQLResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties: true
-          nullable: true
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GraphQLError'
-        extensions:
-          type: object
-          additionalProperties: true
     GraphQLError:
       type: object
       properties:
@@ -133,6 +119,20 @@ components:
                 type: integer
               column:
                 type: integer
+        extensions:
+          type: object
+          additionalProperties: true
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          nullable: true
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GraphQLError'
         extensions:
           type: object
           additionalProperties: true

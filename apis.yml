@@ -16,17 +16,22 @@ description: >-
   Engine GraphQL endpoint and the optional Dagger Cloud Web UI.
 url: https://raw.githubusercontent.com/api-evangelist/dagger/refs/heads/main/apis.yml
 deliveryModel:
-  model: unknown
-  open_source: unknown
+  model: open-core
+  license: Apache-2.0
+  license_evidence:
+    repo: dagger/dagger
+    spdx: Apache-2.0
+    stars: 16300
+  open_source: true
   commercial: true
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: medium
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -49,6 +54,10 @@ position: Consuming
 created: '2026-03-26'
 modified: '2026-09-07'
 specificationVersion: '0.23'
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-25
+x-docs-hosting: netlify
 tags:
 - Build Automation
 - BuildKit
@@ -60,7 +69,7 @@ tags:
 - GraphQL
 - Modules
 - OCI
-- Open-Source
+- Open Source
 - Pipelines
 - Programmable Pipelines
 - SDK
@@ -79,6 +88,7 @@ tags_raw:
 - Pipelines
 - Programmable Pipelines
 - SDKs
+- Open-Source
 apis:
 - aid: dagger:graphql
   name: Dagger Engine GraphQL API
@@ -207,8 +217,6 @@ apis:
   humanURL: https://docs.dagger.io/api/
   baseURL: http://127.0.0.1:{DAGGER_SESSION_PORT}
   tags:
-  - GraphQL
-  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
