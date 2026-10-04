@@ -101,27 +101,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GraphQLError:
-      type: object
-      properties:
-        message:
-          type: string
-        path:
-          type: array
-          items:
-            type: string
-        locations:
-          type: array
-          items:
-            type: object
-            properties:
-              line:
-                type: integer
-              column:
-                type: integer
-        extensions:
-          type: object
-          additionalProperties: true
     GraphQLRequest:
       type: object
       required:
@@ -149,6 +128,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GraphQLError'
+        extensions:
+          type: object
+          additionalProperties: true
+    GraphQLError:
+      type: object
+      properties:
+        message:
+          type: string
+        path:
+          type: array
+          items:
+            type: string
+        locations:
+          type: array
+          items:
+            type: object
+            properties:
+              line:
+                type: integer
+              column:
+                type: integer
         extensions:
           type: object
           additionalProperties: true
