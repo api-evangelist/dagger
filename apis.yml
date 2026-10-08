@@ -224,6 +224,8 @@ apis:
   - type: ErrorCatalog
     url: errors/dagger-problem-types.yml
 common:
+- type: FinOps
+  url: finops/dagger-finops.yml
 - type: Overlay
   url: overlays/dagger-graphql-api-overlay.yaml
 - type: IssueTracker
