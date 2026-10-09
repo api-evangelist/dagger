@@ -110,3 +110,32 @@ findings:
 - >-
   Both non-enterprise tiers still carry the "early access plan" label, so the
   pricing is not presented as settled.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  - negotiated
+  units: []
+  plans:
+  - name: Individual
+    access: free
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Team
+    access: paid
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Enterprise
+    access: negotiated
+    model: negotiated
+    model_how: stated
+    units: []
+    periods: []
