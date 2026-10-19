@@ -27,3 +27,64 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: dagger-go-module-proxy
+  label: Go module proxy
+  partner_name: Go module proxy
+  category: official SDK (Go)
+  type: register
+  channel: package-registry
+  evidence: https://pkg.go.dev/dagger.io/dagger
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: dagger.io/dagger
+      version: v0.21.10
+      released: '2026-09-30'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/dagger.io/dagger
+      repo_leg: domain:dagger.io
+      publisher_leg: module-path:dagger.io
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: dagger-pypi
+  label: PyPI
+  partner: pypi
+  partner_name: PyPI
+  category: official SDK (Python)
+  type: register
+  channel: package-registry
+  evidence: https://pypi.org/project/dagger-io/
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: dagger-io
+      version: 0.21.10
+      released: '2026-09-30'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/dagger-io/
+      repo_leg: domain:dagger.io
+      publisher_leg: email:dagger.io
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
