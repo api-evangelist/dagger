@@ -88,3 +88,54 @@
     detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
+- slug: dagger-winget-windows-package-manager
+  label: winget (Windows Package Manager)
+  partner_name: winget (Windows Package Manager)
+  category: official CLI (winget (Windows Package Manager))
+  type: register
+  channel: package-registry
+  evidence: https://github.com/microsoft/winget-pkgs/tree/master/manifests/d/Dagger/Cli
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: winget (Windows Package Manager) (public package index)
+    spec_file: null
+    packages:
+    - name: Dagger.Cli
+      kind: manifest
+      version: 0.21.10
+      released: '2026-09-30'
+      lapsed: false
+      page: https://github.com/microsoft/winget-pkgs/tree/master/manifests/d/Dagger/Cli
+      cli: 'winget: Dagger is an integrated platform to orchestrate the delivery of applications'
+      repo_leg: domain:dagger.io
+      publisher_leg: artifact-domain:dagger.io
+      matched_by: domain
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: dagger-skillsmp-skillsmp-com
+  label: SkillsMP (skillsmp.com)
+  partner_name: SkillsMP (skillsmp.com)
+  category: Agent Skills register
+  type: register
+  channel: standard-directory
+  evidence: https://skillsmp.com/creators/dagger
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: SkillsMP (skillsmp.com) (public sitemap / list)
+    spec_file: null
+    standard: Agent Skills (agentskills.io)
+    role: agent-skills-listing
+    matched_org: dagger
+    matched_by: org-profile-domain:dagger.io
+    sample_skills: []
+    detected_by: sweep-agent-skills.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
