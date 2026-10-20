@@ -3,7 +3,12 @@ method: searched
 checked:
 - https://api.nuget.org/v3
 - https://aws.amazon.com/marketplace/
+- https://cdn.winget.microsoft.com/cache
 - https://crates.io/api/v1
+- https://formulae.brew.sh/api/cask.json
+- https://formulae.brew.sh/api/formula.json
+- https://github.com/ScoopInstaller/Extras
+- https://github.com/ScoopInstaller/Main
 - https://github.com/marketplace?type=actions
 - https://proxy.golang.org
 - https://pypi.org/pypi
@@ -105,5 +110,35 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: winget (Windows Package Manager)
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official CLI (winget (Windows Package Manager))
+  evidence: https://github.com/microsoft/winget-pkgs/tree/master/manifests/d/Dagger/Cli
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: winget (Windows Package Manager) (public package index)
+    spec_file: null
+    packages:
+    - name: Dagger.Cli
+      kind: manifest
+      version: 0.21.10
+      released: '2026-09-30'
+      lapsed: false
+      page: https://github.com/microsoft/winget-pkgs/tree/master/manifests/d/Dagger/Cli
+      cli: 'winget: Dagger is an integrated platform to orchestrate the delivery of applications'
+      repo_leg: domain:dagger.io
+      publisher_leg: artifact-domain:dagger.io
+      matched_by: domain
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  detected_by: sweep-official-clis.py
+  first_seen: '2026-10-20'
 source:
 - https://github.com/marketplace?type=actions
