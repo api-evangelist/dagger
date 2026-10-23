@@ -152,3 +152,65 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: dagger-hex
+  label: Hex
+  partner: hex-pm
+  partner_name: Hex
+  category: official SDK (Elixir/Erlang)
+  type: register
+  channel: package-registry
+  evidence: https://hex.pm/packages/dagger
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Hex (public registry JSON)
+    spec_file: null
+    language: Elixir/Erlang
+    packages:
+    - name: dagger
+      version: 0.21.11
+      released: '2026-10-22'
+      released_field: inserted_at
+      lapsed: false
+      page: https://hex.pm/packages/dagger
+      repo_leg: github-org:dagger
+      publisher_leg: org:dagger
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: dagger-packagist
+  label: Packagist
+  partner: packagist
+  partner_name: Packagist
+  category: official SDK (PHP)
+  type: register
+  channel: package-registry
+  evidence: https://packagist.org/packages/dagger/dagger
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Packagist (public registry JSON)
+    spec_file: null
+    language: PHP
+    packages:
+    - name: dagger/dagger
+      version: v0.21.11
+      released: '2026-10-21'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/dagger/dagger
+      repo_leg: github-org:dagger
+      publisher_leg: org:dagger
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
