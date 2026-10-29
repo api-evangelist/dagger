@@ -1,4 +1,4 @@
-# Dagger (dagger)
+# Dagger
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,149 +66,159 @@
 
 Dagger is an open-source programmable CI/CD engine that runs pipelines in containers using a unified, introspectable GraphQL API. Pipelines are written as code in the developer's preferred language (Go, Python, TypeScript, PHP, Java, .NET, Elixir, or Rust) using Dagger SDKs and packaged as Dagger Modules that can be published to the Daggerverse module index. The Dagger Engine exposes Container, Directory, File, Secret, and CacheVolume as first-class GraphQL types backed by a content-addressed store, enabling deterministic builds and aggressive caching. Dagger Cloud provides the hosted control plane for pipeline traces, checks, and module observability. Dagger does not expose a public REST API; clients connect to a per-session Dagger Engine GraphQL endpoint and the optional Dagger Cloud Web UI.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/dagger/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/dagger/refs/heads/main/apis.yml)
+**Areas:** Build Automation · BuildKit · CI/CD · Containers · DAG · Daggerverse · DevOps · GraphQL · Modules · OCI · Open Source · Pipelines
 
-## Scope
+## Dagger on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** Open Source
+Everything profiled for Dagger is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/dagger/](https://apis.io/providers/dagger/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Build Automation
-- BuildKit
-- CI/CD
-- Containers
-- DAG
-- Daggerverse
-- DevOps
-- GraphQL
-- Modules
-- OCI
-- Open Source
-- Pipelines
-- Programmable Pipelines
-- SDKs
+- [Dagger Engine GraphQL API](https://apis.io/apis/dagger/graphql/) — The Dagger Engine exposes a unified, introspectable GraphQL type system at a per-session endpoint. The schema includes Container, Directory, File, Secret,…
+- [Dagger SDKs](https://apis.io/apis/dagger/sdks/) — Native SDKs for Go, Python, TypeScript, PHP, Java, .NET, Elixir, and Rust that generate strongly typed clients against the Dagger Engine's GraphQL schema,…
+- [Daggerverse Module Index](https://apis.io/apis/dagger/daggerverse/) — Daggerverse is the free, public index of Dagger Modules. Developers search for, browse, and consume reusable Modules contributed by the Dagger community.
+- [Dagger Cloud](https://apis.io/apis/dagger/cloud/) — Dagger Cloud is the hosted control plane providing pipeline traces, checks, module observability, and team collaboration. It integrates with the local…
+- [Dagger Graph QL API](https://apis.io/apis/dagger/dagger-graph-ql-api/) — The Graph QL API from Dagger — 1 operation(s) for graph ql.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-26
-- **Modified:** 2026-04-28
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Dagger Engine GraphQL API
+GraphQL schemas.
 
-The Dagger Engine exposes a unified, introspectable GraphQL type system at a per-session endpoint. The schema includes Container, Directory, File, Secret, CacheVolume, and other first-class types and is dynamically extended at runtime by loaded Dagger Modules. All Dagger SDKs (Go, Python, TypeScript, PHP, Java, .NET, Elixir, Rust) are generated against this schema. There is no publicly-hosted REST endpoint.
+- [Dagger GraphQL API](https://apis.io/graphqls/dagger/dagger-graphql/)
 
-- **Human URL:** [https://docs.dagger.io/api/](https://docs.dagger.io/api/)
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- GraphQL
-- Introspection
-- Modules
-- SDK
+- [Container Use](https://apis.io/servers/dagger/container-use/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://docs.dagger.io/api/)
-- [API Reference](https://docs.dagger.io/reference/)
-- [A P I Internals](https://docs.dagger.io/api/internals/)
-- [Blog](https://dagger.io/blog/graphql)
-- [Capabilities](capabilities/dagger-graphql-capabilities.yml)
-- [Postman Collection](collections/dagger.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dagger.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Dagger SDKs
+- [Dagger Agentic Access](https://apis.io/agentic-access/dagger/dagger-agentic-access/)
 
-Native SDKs for Go, Python, TypeScript, PHP, Java, .NET, Elixir, and Rust that generate strongly typed clients against the Dagger Engine's GraphQL schema, allowing pipelines to be written as regular code in the developer's preferred language.
+#### JSON-LD (1)
 
-- **Human URL:** [https://docs.dagger.io/sdk/](https://docs.dagger.io/sdk/)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Dagger Context](https://apis.io/jsonld/dagger/dagger-context/)
 
-- .NET
-- Elixir
-- Go
-- Java
-- PHP
-- Python
-- Rust
-- SDKs
-- TypeScript
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://docs.dagger.io/sdk/)
-- [GitHub Repository](https://github.com/dagger/dagger)
-- [Postman Collection](collections/dagger.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dagger.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Dagger Vocabulary](https://apis.io/vocabularies/dagger/dagger-vocabulary/)
 
-### Daggerverse Module Index
+#### Collections (2)
 
-Daggerverse is the free, public index of Dagger Modules. Developers search for, browse, and consume reusable Modules contributed by the Dagger community.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://daggerverse.dev/](https://daggerverse.dev/)
+- [Dagger HTTP GraphQL API](https://apis.io/collections/dagger/open-dagger/)
+- [Dagger HTTP GraphQL API](https://apis.io/collections/dagger/open-dagger-graphql-api/)
 
-#### Tags
+#### Overlays (1)
 
-- Daggerverse
-- Modules
-- Registry
+OpenAPI overlays, including conversational phrasing for each operation.
 
-#### Properties
+- [Dagger Graphql Api Overlay](https://apis.io/overlays/dagger/dagger-graphql-api-overlay/)
 
-- [Website](https://daggerverse.dev/)
-- [Quickstart](https://docs.dagger.io/ci/quickstart/simplify/)
-- [Postman Collection](collections/dagger.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dagger.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Security (2)
 
-### Dagger Cloud
+Authentication, trust centre, and vulnerability disclosure.
 
-Dagger Cloud is the hosted control plane providing pipeline traces, checks, module observability, and team collaboration. It integrates with the local Dagger Engine for seamless trace uploads.
+- [Dagger Authentication](https://apis.io/security/dagger/dagger-authentication/)
+- [Dagger Domain Security](https://apis.io/security/dagger/dagger-domain-security/)
 
-- **Human URL:** [https://dagger.io/cloud](https://dagger.io/cloud)
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- Cloud
-- Observability
-- Telemetry
-- Traces
+- [Dagger Plans Pricing](https://apis.io/plans/dagger/dagger-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Website](https://dagger.io/cloud)
-- [Sign Up](https://dagger.cloud/signup)
-- [Postman Collection](collections/dagger.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dagger.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published request limits.
 
-## Common Properties
+- [Dagger Rate Limits](https://apis.io/rate-limits/dagger/dagger-rate-limits/)
 
-- [LinkedIn](https://www.linkedin.com/company/dagger-io)
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Dagger Finops](https://apis.io/finops/dagger/dagger-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://dagger.io/)
 - [Documentation](https://docs.dagger.io/)
-- [Getting Started](https://docs.dagger.io/quickstart)
-- [Reference](https://docs.dagger.io/reference/)
-- [GitHub Organization](https://github.com/dagger)
-- [GitHub Repository](https://github.com/dagger/dagger)
-- [Daggerverse](https://daggerverse.dev/)
-- [Blog](https://dagger.io/blog)
+- [Getting started](https://docs.dagger.io/quickstart)
 - [Pricing](https://dagger.io/pricing)
-- [Sign Up](https://dagger.cloud/signup)
-- [Discord](https://discord.gg/dagger-io)
-- [YouTube](https://www.youtube.com/@dagger-io)
-- [Twitter](https://twitter.com/dagger_io)
-- [License](https://github.com/dagger/dagger/blob/main/LICENSE)
-- [JSON-LD](json-ld/dagger-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Vocabulary](vocabulary/dagger-vocabulary.yml)
-- [Capabilities](capabilities/dagger-graphql-capabilities.yml)
-- [Integrations](https://dagger.io/partners/)
-- [L L Ms Txt](https://docs.dagger.io/llms.txt)
+- [Sign up](https://dagger.cloud)
+- [Changelog](https://dagger.io/changelog)
+- [Blog](https://dagger.io/blog)
+- [Terms of service](https://dagger.io/legal_pages/terms-of-service)
+- [Privacy policy](https://dagger.io/legal_pages/privacy-policy)
+- [GitHub](https://github.com/dagger)
+- [Status](https://status.dagger.io)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 55.7** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.7 |
+| Contract quality | 55.0 |
+| Contract governance | 31.8 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 61.3 |
+| Access clarity | 63.2 |
+
+**Agent readiness 35.2** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/dagger/](https://apis.io/providers/dagger/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Dagger: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/dagger/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
