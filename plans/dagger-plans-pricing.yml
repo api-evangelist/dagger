@@ -1,0 +1,137 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://dagger.io/pricing/
+sources:
+- https://dagger.io/pricing/
+- https://dagger.io/pricing
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T141238
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+  managed_tier: Starter — $20/mo
+published: true
+note: Plans combine monthly minimums with usage-based resource pricing; repeat work (same inputs within
+  last 30 days) billed 5x cheaper.
+plan_count: 7
+currency: USD
+plans:
+- name: Starter
+  price_text: Starter — $20/mo
+  price: 20
+  currency: USD
+  period: month
+  unit: 1 user
+  included_quota: '1 user, Community Discord, Email support, SOC 2 compliant, Cloud Traces: 1 month retention'
+  overage: You pay the plan price or your usage, whichever is higher.
+- name: Scale
+  price_text: Scale — $200/mo
+  price: 200
+  currency: USD
+  period: month
+  included_quota: 'Everything in Starter, plus Unlimited users, Access control, Private Discord, Cloud
+    Traces: 1 year retention'
+  overage: You pay the plan price or your usage, whichever is higher.
+- name: Enterprise
+  price_text: Enterprise — Custom
+  period: none
+  included_quota: 'Everything in Scale, plus SSO, 24/7 premium support, Cloud Traces: custom retention,
+    Custom terms'
+- name: Pipeline CPU
+  price_text: 'New work: 0.5¢ / CPU-min'
+  price: 0.5
+  currency: USD
+  period: per-use
+  unit: CPU-min
+  overage: 'Repeat work: 0.1¢ / CPU-min'
+- name: Pipeline memory
+  price_text: 'New work: 0.5¢ / GB-min'
+  price: 0.5
+  currency: USD
+  period: per-use
+  unit: GB-min
+  overage: 'Repeat work: 0.1¢ / GB-min'
+- name: Pipeline inputs
+  price_text: 'New work: 2.5¢ / GB'
+  price: 2.5
+  currency: USD
+  period: per-use
+  unit: GB
+  overage: 'Repeat work: 0.5¢ / GB'
+- name: Pipeline outputs
+  price_text: 'New work: 10¢ / GB'
+  price: 10
+  currency: USD
+  period: per-use
+  unit: GB
+  overage: 'Repeat work: 2¢ / GB'
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - seat
+  units:
+  - data
+  - seat
+  plans:
+  - name: Starter
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Scale
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Pipeline CPU
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Pipeline memory
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
+  - name: Pipeline inputs
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
+  - name: Pipeline outputs
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
